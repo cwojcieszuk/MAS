@@ -1,51 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MP1
+﻿namespace MP1
 {
     public class Player
     {
-        private string _name;
-        private DateTime _dateOfBirth;
-        private string? _gender = String.Empty;
-
-        public Player(string name, DateTime dateOfBirth, string? gender = null)
+        private string _name; 
+        private DateTime _dateOfBirth; 
+        private string? _gender; 
+        private static int _minimalAge = 18;
+        private int _age => DateTime.Now.Year - _dateOfBirth.Year;
+        private List<string> _favoriteTeams; 
+        
+        private static List<Player> extent = new List<Player>();
+        
+        public Player(string name, DateTime dateOfBirth,List<string> favoriteTeams, string gender = null)
         {
             _name = name;
             _dateOfBirth = dateOfBirth;
+            _favoriteTeams = favoriteTeams;
             _gender = gender;
 
-            addPlayer(this);
+            AddPlayer(this);
         }
 
-        private static List<Player> players = new List<Player>();
-
-        private string getPlayerData()
+        public void AddToFavouriteTeams(string team)
         {
-            return $"Player: {this._name} date of birth: {this._dateOfBirth} {(_gender == null ? "" : $"gender: {this._gender}")}";
+            _favoriteTeams.Add(team);
         }
 
-        private static void addPlayer(Player player)
+        public void AddToFavouriteTeams(string[] teams)
         {
-            players.Add(player);
+            _favoriteTeams.AddRange(teams);
         }
 
-        private static void removeGracz(Player player)
+        public override string ToString()
         {
-            players.Remove(player);
+            string gender = _gender == null ? "" : $"gender: {_gender}";
+            string favoriteTeams = _favoriteTeams.Count <= 0 ? "" : $"favourite teams: {string.Join(", ", _favoriteTeams)}";
+            return base.ToString() + $": {_name} age: {_age} {gender}{favoriteTeams}";
         }
 
-        public static void showExtent()
+        public static void ShowExtent()
         {
-            Console.WriteLine($"Extent of the class: {typeof(Player).Name} \n");
+            Console.WriteLine($"Extent of the class: {nameof(Player)} \n");
 
-            foreach(Player player in players)
+            foreach(Player player in extent)
             {
-                Console.WriteLine(player.getPlayerData());
+                Console.WriteLine(player);
             } 
+            Console.WriteLine("");
+        }
+
+        public static void ShowYoungestPlayer()
+        {
+            Player youngestPlayer = extent.Find(player => player._dateOfBirth == extent.Max(player => player._dateOfBirth));
+
+            if (youngestPlayer == null) return;
+            
+            Console.WriteLine("Youngest player is:");
+            Console.WriteLine(youngestPlayer);
+        }
+        
+        private static void AddPlayer(Player player)
+        {
+            extent.Add(player);
+        }
+
+        private static void RemovePlayer(Player player)
+        {
+            extent.Remove(player);
         }
     }
 }
