@@ -1,14 +1,18 @@
-﻿namespace MP1
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace MP1
 {
+    [Serializable]
     public class Player
     {
-        private string _name; 
-        private DateTime _dateOfBirth; 
-        private string? _gender; 
         private static int _minimalAge = 18;
-        private int _age => DateTime.Now.Year - _dateOfBirth.Year;
-        private List<string> _favoriteTeams; 
-        
+        public string _name { get; set; } 
+        public DateTime _dateOfBirth { get; set; }
+        public string? _gender { get; set; }
+        public int _age => DateTime.Now.Year - _dateOfBirth.Year;
+        public List<string> _favoriteTeams { get; set; }
+
         private static List<Player> extent = new List<Player>();
         
         public Player(string name, DateTime dateOfBirth,List<string> favoriteTeams, string gender = null)
@@ -20,6 +24,9 @@
 
             AddPlayer(this);
         }
+
+        [JsonConstructor]
+        public Player() { }
 
         public void AddToFavouriteTeams(string team)
         {
@@ -57,6 +64,29 @@
             
             Console.WriteLine("Youngest player is:");
             Console.WriteLine(youngestPlayer);
+        }
+
+        public static void WriteExtent(string filename)
+        {
+            if(extent.Count <= 0)
+            {
+                return;
+            }
+
+            string jsonString = JsonSerializer.Serialize(extent);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+
+            File.WriteAllText(filename, jsonString);
+        }
+
+        public static void ReadExtent(string filename)
+        {
+            string result = File.ReadAllText(filename);
+
+            if(extent.Count <= 0)
+            {
+                extent = JsonSerializer.Deserialize<List<Player>>(result)!;
+            }
         }
         
         private static void AddPlayer(Player player)
