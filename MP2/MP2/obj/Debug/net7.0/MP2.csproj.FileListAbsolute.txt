@@ -1,0 +1,15 @@
+E:\Studia\MAS\MAS\MP2\MP2\bin\Debug\net7.0\MP2.exe
+E:\Studia\MAS\MAS\MP2\MP2\bin\Debug\net7.0\MP2.deps.json
+E:\Studia\MAS\MAS\MP2\MP2\bin\Debug\net7.0\MP2.runtimeconfig.json
+E:\Studia\MAS\MAS\MP2\MP2\bin\Debug\net7.0\MP2.dll
+E:\Studia\MAS\MAS\MP2\MP2\bin\Debug\net7.0\MP2.pdb
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\MP2.csproj.AssemblyReference.cache
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\MP2.GeneratedMSBuildEditorConfig.editorconfig
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\MP2.AssemblyInfoInputs.cache
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\MP2.AssemblyInfo.cs
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\MP2.csproj.CoreCompileInputs.cache
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\MP2.dll
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\refint\MP2.dll
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\MP2.pdb
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\MP2.genruntimeconfig.cache
+E:\Studia\MAS\MAS\MP2\MP2\obj\Debug\net7.0\ref\MP2.dll
