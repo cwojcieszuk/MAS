@@ -1,0 +1,15 @@
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\MP3.csproj.AssemblyReference.cache
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\MP3.GeneratedMSBuildEditorConfig.editorconfig
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\MP3.AssemblyInfoInputs.cache
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\MP3.AssemblyInfo.cs
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\MP3.csproj.CoreCompileInputs.cache
+E:\Studia\MAS\MAS\MP3\MP3\bin\Debug\net7.0\MP3.exe
+E:\Studia\MAS\MAS\MP3\MP3\bin\Debug\net7.0\MP3.deps.json
+E:\Studia\MAS\MAS\MP3\MP3\bin\Debug\net7.0\MP3.runtimeconfig.json
+E:\Studia\MAS\MAS\MP3\MP3\bin\Debug\net7.0\MP3.dll
+E:\Studia\MAS\MAS\MP3\MP3\bin\Debug\net7.0\MP3.pdb
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\MP3.dll
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\refint\MP3.dll
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\MP3.pdb
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\MP3.genruntimeconfig.cache
+E:\Studia\MAS\MAS\MP3\MP3\obj\Debug\net7.0\ref\MP3.dll
