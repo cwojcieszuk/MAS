@@ -1,0 +1,15 @@
+E:\Studia\MAS\MAS\MP4\MP4\bin\Debug\net7.0\MP4.exe
+E:\Studia\MAS\MAS\MP4\MP4\bin\Debug\net7.0\MP4.deps.json
+E:\Studia\MAS\MAS\MP4\MP4\bin\Debug\net7.0\MP4.runtimeconfig.json
+E:\Studia\MAS\MAS\MP4\MP4\bin\Debug\net7.0\MP4.dll
+E:\Studia\MAS\MAS\MP4\MP4\bin\Debug\net7.0\MP4.pdb
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\MP4.csproj.AssemblyReference.cache
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\MP4.GeneratedMSBuildEditorConfig.editorconfig
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\MP4.AssemblyInfoInputs.cache
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\MP4.AssemblyInfo.cs
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\MP4.csproj.CoreCompileInputs.cache
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\MP4.dll
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\refint\MP4.dll
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\MP4.pdb
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\MP4.genruntimeconfig.cache
+E:\Studia\MAS\MAS\MP4\MP4\obj\Debug\net7.0\ref\MP4.dll
