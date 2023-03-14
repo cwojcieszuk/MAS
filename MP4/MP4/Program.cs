@@ -2,6 +2,7 @@
 
 using MP4.Atrybut;
 using MP4.Bag;
+using MP4.Custom;
 using MP4.Ordered;
 using MP4.Subset;
 using MP4.Unique;
@@ -20,7 +21,8 @@ public class Program
         //InitOrdered();
         //InitBag();
         //InitXor();
-        InitSubset();
+        //InitSubset();
+        InitCustom();
     }
 
     static void InitAttribute()
@@ -98,5 +100,13 @@ public class Program
         
         team1.SetTeamCaptain(footballPlayer3);
         team1.ShowPlayers();
+    }
+
+    static void InitCustom()
+    {
+        Coupon coupon1 = new Coupon("Live", DateTime.Now, CouponStatus.Win);
+        Coupon coupon2 = new Coupon("Normal", DateTime.Now, CouponStatus.InProgress);
+        
+        Coupon.ShowCoupons();
     }
 }
