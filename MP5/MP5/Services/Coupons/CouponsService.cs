@@ -1,4 +1,5 @@
-﻿using MP5.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using MP5.Context;
 using MP5.DTO;
 using MP5.Models;
 
@@ -45,9 +46,27 @@ public class CouponsService : ICouponsService
         await _dbContext.SaveChangesAsync();
     }
 
-    private int FindLatestCouponId()
+    public async Task<IEnumerable<GetCouponsByPlayerDTO>> GetCouponByPlayer(int idPlayer)
     {
-        return _dbContext.Coupons.Max(obj => (int?)obj.IdCoupon) ?? 0;
+        return await _dbContext.PlayerCoupons.Where(obj => obj.IdPlayer == idPlayer).Select(obj =>
+            new GetCouponsByPlayerDTO()
+            {
+                PlayerId = idPlayer,
+                CouponId = obj.IdCoupon,
+                Amount = obj.Amount,
+                Date = obj.Coupon.Date,
+                FullRate = obj.Coupon.FullRate,
+                PotentialWin = obj.Coupon.PotentialWin,
+                Bets = obj.Coupon.BetCoupons.Select(betCoupon => new Bet()
+                {
+                    IdBet = betCoupon.IdBet, 
+                    Category = betCoupon.Bet.Category, 
+                    Rate = betCoupon.Bet.Rate,
+                    BetType = betCoupon.Bet.BetType,
+                    EventName = betCoupon.Bet.EventName,
+                    SportName = betCoupon.Bet.SportName,
+                })
+            }).ToListAsync();
     }
 
     private double CountFullRateForCoupon(List<double> rates)
