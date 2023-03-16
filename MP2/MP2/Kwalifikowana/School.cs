@@ -31,7 +31,7 @@ public class School
     {
         if (!_studentsQualif.ContainsKey(studentIndex))
         {
-            return null;
+            throw new Exception("Student not found");
         }
 
         return _studentsQualif[studentIndex];

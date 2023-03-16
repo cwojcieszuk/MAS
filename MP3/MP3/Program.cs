@@ -11,7 +11,9 @@ public class Program
         //InitAbstract();
         //InitMultiInheritance();
         //InitDynamic();
-        InitOverlapping();
+        //InitOverlapping();
+
+        //add dynamic
     }
 
     static void InitAbstract()

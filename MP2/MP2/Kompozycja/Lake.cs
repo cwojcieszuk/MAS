@@ -15,12 +15,12 @@ public class Lake
         Area = area;
     }
 
-    public Fish CreateFish(string name)
+    private void AddFish(Fish fish)
     {
-        Fish newFish = new Fish(name);
-        _fishes.Add(newFish);
-
-        return newFish;
+        if(!_fishes.Contains(fish))
+        {
+            _fishes.Add(fish);
+        }
     }
 
     public override string ToString()
@@ -33,9 +33,17 @@ public class Lake
     {
         public string Name { get; set; }
 
-        public Fish(string name)
+        private Fish(string name)
         {
             Name = name;
+        }
+
+        public static Fish CreateFish(string name, Lake lake)
+        {
+            var fish = new Fish(name);
+            lake.AddFish(fish);
+
+            return fish;
         }
 
         public override string ToString()
