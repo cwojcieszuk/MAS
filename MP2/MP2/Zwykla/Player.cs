@@ -30,7 +30,7 @@ public class Player
         {
             _bets.Add(bet);
 
-            bet.Player = this;
+            bet.AddPlayer(this);
         }
     }
 }

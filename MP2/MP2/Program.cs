@@ -2,24 +2,27 @@
 using MP2.Kwalifikowana;
 using MP2.Z_atrybutem;
 using MP2.Z_Atrybutem;
-
-
-//zwykla
+using static MP2.Kompozycja.Lake;
 
 namespace MP2;
 
 public static class Program
 {
     public static void Main(string[] args)
-    {
-        
+    { 
+        //InitZwykla();
+        //InitZAtrybutem();
+        //InitKwalifikowana();
+        InitKompozycja();
     }
 
-    public static void InitZwykla()
+    static void InitZwykla()
     {
         var player1 = new Player("marek", 20, "20 8000 8000 8000 8000 8000");
         var bet1 = new Bet(DateTime.Now, 200);
         var bet2 = new Bet(DateTime.Now, 2);
+
+        bet1.AddPlayer(player1);
 
         player1.AddBet(bet1);
         player1.AddBet(bet2);
@@ -27,7 +30,7 @@ public static class Program
         Console.WriteLine(player1);
     }
 
-    public static void InitZAtrybutem()
+    static void InitZAtrybutem()
     {
         var ballPlayer1 = new BallPlayer("Giannis", "PF");
         var ballPlayer2 = new BallPlayer("Middleton", "SF");
@@ -43,7 +46,7 @@ public static class Program
         team1.ShowPlayers();
     }
 
-    public static void InitKwalifikowana()
+    static void InitKwalifikowana()
     {
         var student1 = new Student("Cezary", "Wojcieszuk", "s22798");
         var student2 = new Student("Jan", "Kowalski", "s1337");
@@ -55,15 +58,16 @@ public static class Program
         student1.AddSchool(school2);
         student2.AddSchool(school2);
 
-        Console.WriteLine(school1.FindStudentByQualif(student1.StudentIndex));
+        Console.WriteLine(school1.FindStudentByQualif("s227982"));
     }
 
-    public static void InitKompozycja()
+    static void InitKompozycja()
     {
         var lake1 = new Lake("Sniardwy", "Warminsko-mazurskie", 113.4);
 
-        var fish1 = lake1.CreateFish("Karp");
-        var fish2 = lake1.CreateFish("Szczupak");
+        var fish1 = Fish.CreateFish("karp", lake1);
+        var fish2 = Fish.CreateFish("karp2", lake1);
+        var fish3 = Fish.CreateFish("karp4", lake1);
 
         Console.WriteLine(lake1);
     }

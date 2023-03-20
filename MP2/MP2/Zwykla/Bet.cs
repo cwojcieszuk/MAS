@@ -12,6 +12,15 @@ public class Bet
         Amount = amount;
     }
 
+    public void AddPlayer(Player player)
+    {
+        if (Player == null)
+        {
+            Player = player;
+            player.AddBet(this);
+        }
+    }
+
     public override string ToString()
     {
         return base.ToString() + $": Date: {Date} Amount: {Amount}";
