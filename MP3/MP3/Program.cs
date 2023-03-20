@@ -1,4 +1,5 @@
 ﻿using MP3.Abstract;
+using MP3.Dynamic;
 using MP3.Multi;
 using MP3.Multi_aspect;
 using MP3.Overlapping;
@@ -10,8 +11,8 @@ public class Program
         Console.WriteLine();
         //InitAbstract();
         //InitMultiInheritance();
-        //InitDynamic();
-        InitOverlapping();
+        InitDynamic();
+        //InitOverlapping();
     }
 
     static void InitAbstract()
@@ -33,16 +34,15 @@ public class Program
 
     static void InitDynamic()
     {
-        Developer dev1 = new FrontendDeveloper("Jan", new[] { "TS" }, new JuniorDeveloper(), "Angular");
-        Console.WriteLine(dev1);
-        dev1.Experience = new MidDeveloper();
-        
-        Console.WriteLine(dev1);
+        Employee emp1 = new Employee("Jan", "Kowalski", new InexperiencedEmployee());
+        Console.WriteLine(emp1);
+        emp1.EmployeeExperience = new ExperiencedEmployee();
+        Console.WriteLine(emp1);
     }
 
     static void InitOverlapping()
     {
-        Employee emp1 = new Employee("Jan", "Kowalski");
+        Employee emp1 = new Employee("Jan", "Kowalski", new ExperiencedEmployee());
         emp1.MakeDeveloper(new []{"C#"});
         
         Console.WriteLine(emp1);

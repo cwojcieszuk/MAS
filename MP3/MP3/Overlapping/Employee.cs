@@ -1,9 +1,12 @@
-﻿namespace MP3.Overlapping;
+﻿using MP3.Dynamic;
+
+namespace MP3.Overlapping;
 
 public class Employee
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
+    public EmployeeExperience EmployeeExperience { get; set; }
     private string[] _languages;
     private string _testingPlatform;
 
@@ -37,10 +40,11 @@ public class Employee
 
     private HashSet<EmployeeType> _employeeTypes = new HashSet<EmployeeType>();
 
-    public Employee(string firstName, string lastName)
+    public Employee(string firstName, string lastName, EmployeeExperience employeeExperience)
     {
         FirstName = firstName;
         LastName = lastName;
+        EmployeeExperience = employeeExperience;
         
         _employeeTypes.Add(EmployeeType.Employee);
     }
@@ -59,8 +63,8 @@ public class Employee
 
     public override string ToString()
     {
-        string testingPlatform = _testingPlatform == null ? "" : $" Testing platform: {_testingPlatform}";
-        string languages = _languages.Length <= 0 ? "" : $" Languages: {string.Join(", ", _languages)}";
-        return base.ToString() + $" First name: {FirstName} Last name: {LastName}{testingPlatform}{languages}";
+        string testingPlatform = TestingPlatform == null ? "" : $" Testing platform: {_testingPlatform}";
+        string languages = Languages == null ? "" : $" Languages: {string.Join(", ", _languages)}";
+        return base.ToString() + $" First name: {FirstName} Last name: {LastName}{testingPlatform}{languages} {EmployeeExperience}";
     }
 }
