@@ -3,9 +3,11 @@
 public class Player
 {
     public string Name { get; set; }
+    private BallTeam _ballTeam {  get; set; }
+    private EsportTeam _esportTeam { get; set; }
 
-    public BallTeam BallTeam { get; set; }
-    public EsportTeam EsportTeam { get; set; }
+    public BallTeam BallTeam { get => _ballTeam; set => AddBallTeam(value); }
+    public EsportTeam EsportTeam { get => _esportTeam; set => AddEsportTeam(value); }
 
     public Player(string name)
     {
@@ -16,7 +18,7 @@ public class Player
     {
         if (EsportTeam is null)
         {
-            BallTeam = ballTeam;
+            _ballTeam = ballTeam;
             ballTeam.AddPlayer(this);
         }
         else
@@ -29,7 +31,7 @@ public class Player
     {
         if (BallTeam is null)
         {
-            EsportTeam = esportTeam;
+            _esportTeam = esportTeam;
             esportTeam.AddPlayer(this);
         }
         else

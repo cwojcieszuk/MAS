@@ -4,33 +4,22 @@ public class Student
 {
     public string FirstName { get; set; }
     public int IndexNumber { get; set; }
-
-    private static Dictionary<int, Student> _students = new Dictionary<int, Student>();
+    private School _school { get; set; }
+    public School School { get => _school; set => AddSchool(value); }
 
     public Student(string firstName, int indexNumber)
     {
         FirstName = firstName;
         IndexNumber = indexNumber;
-        
-        AddIndexNumber(indexNumber);
     }
 
-    public static void ShowStudents()
+    private void AddSchool(School school)
     {
-        foreach (var student in _students)
+        if(school != null)
         {
-            Console.WriteLine(student.Value);
+            School = school;
+            school.AddStudent(this);
         }
-    }
-
-    private void AddIndexNumber(int indexNumber)
-    {
-        if (_students.ContainsKey(IndexNumber))
-        {
-            throw new Exception($"Student with index {indexNumber} already exists");
-        }
-        
-        _students.Add(indexNumber, this);
     }
 
     public override string ToString()

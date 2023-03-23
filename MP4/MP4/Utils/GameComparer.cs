@@ -2,9 +2,9 @@
 
 namespace MP4.Utils;
 
-public class GameComparer : IComparer<Game>
+public class GamePlayerComparer : IComparer<GamePlayer>
 {
-    public int Compare(Game x, Game y)
+    public int Compare(GamePlayer x, GamePlayer y)
     {
         if (ReferenceEquals(x, y)) return 0;
         if (ReferenceEquals(null, y)) return 1;

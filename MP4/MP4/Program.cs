@@ -17,12 +17,12 @@ public class Program
         Console.WriteLine("");
         
         //InitAttribute();
-        //InitUnique();
+        InitUnique();
         //InitOrdered();
         //InitBag();
         //InitXor();
         //InitSubset();
-        InitCustom();
+        //InitCustom();
     }
 
     static void InitAttribute()
@@ -40,8 +40,12 @@ public class Program
         Student stud1 = new Student("Jan", 20138);
         Student stud2 = new Student("Marek", 21377);
         //Student stud3 = new Student("Arek", 20138);
-        
-        Student.ShowStudents();
+        School school = new School() { Name = "PJATK" };
+
+        school.AddStudent(stud1);
+        school.AddStudent(stud2);
+        school.ShowStudents();
+        school.AddStudent(stud2);
     }
 
     static void InitOrdered()
@@ -49,8 +53,11 @@ public class Program
         Game game1 = new Game("Hogwarts Legacy", "Warner bros");
         Game game2 = new Game("Wo Long: Fallen Dynasty", "Team ninja");
         Game game3 = new Game("Assasin's creed Valhalla", "Ubisoft");
-        
-        Game.ShowGames();
+
+        game1.AddPlayer(new GamePlayer { Name = "zzzz" });
+        game1.AddPlayer(new GamePlayer { Name = "aaaa" });
+
+        game1.ShowPlayers();
     }
 
     static void InitBag()
@@ -79,7 +86,7 @@ public class Program
         player2.AddEsportTeam(esportTeam1);
         player3.AddBallTeam(ballTeam1);
         
-        player2.AddBallTeam(ballTeam1);
+        //player2.AddBallTeam(ballTeam1);
         Console.WriteLine(player1);
         
         ballTeam1.ShowPlayers();
@@ -98,8 +105,10 @@ public class Program
         
         team2.AddPlayer(footballPlayer3);
         
-        team1.SetTeamCaptain(footballPlayer3);
+        team1.SetTeamCaptain(footballPlayer2);
         team1.ShowPlayers();
+        team1.SetTeamCaptain(footballPlayer1);
+        Console.Write(team1.TeamCaptain);
     }
 
     static void InitCustom()

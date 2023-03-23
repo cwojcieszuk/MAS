@@ -7,21 +7,20 @@ public class Game
     public string Name { get; set; }
     public string Studio { get; set; }
 
-    private static SortedSet<Game> _games = new SortedSet<Game>(new GameComparer());
+    private SortedSet<GamePlayer> _players = new SortedSet<GamePlayer>(new GamePlayerComparer());
 
     public Game(string name, string studio)
     {
         Name = name;
         Studio = studio;
         
-        AddGame(this);
     }
 
-    public static void ShowGames()
+    public void ShowPlayers()
     {
-        foreach (var game in _games)
+        foreach (var player in _players)
         {
-            Console.WriteLine(game);
+            Console.WriteLine(player.Name + " " + player.Game);
         }
     }
 
@@ -30,11 +29,12 @@ public class Game
         return base.ToString() + $" Name: {Name} Studio: {Studio}";
     }
 
-    private void AddGame(Game game)
+    public void AddPlayer(GamePlayer player)
     {
-        if (!_games.Contains(game))
+        if (!_players.Contains(player))
         {
-            _games.Add(game);
+            _players.Add(player);
+            player.Game = this;
         }
     }
 }

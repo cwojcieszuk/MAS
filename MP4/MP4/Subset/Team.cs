@@ -4,8 +4,13 @@ public class Team
 {
     public string Name { get; set; }
     public string League { get; set; }
+    private FootballPlayer _teamCaptain { get; set; }
 
-    public FootballPlayer TeamCaptain { get; set; }
+    public FootballPlayer TeamCaptain { 
+        get => _teamCaptain;
+        set => SetTeamCaptain(value);
+    }
+
     private List<FootballPlayer> _footballPlayers = new List<FootballPlayer>();
 
     public Team(string name, string league)
@@ -31,7 +36,7 @@ public class Team
             throw new Exception("This football player is not connected with this team");
         }
 
-        TeamCaptain = player;
+        _teamCaptain = player;
     }
 
     public void ShowPlayers()

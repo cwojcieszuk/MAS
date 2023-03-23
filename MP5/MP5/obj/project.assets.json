@@ -2462,19 +2462,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HARDPC\\.nuget\\packages\\": {}
+    "C:\\Users\\s22798\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Studia\\MAS\\MAS\\MP5\\MP5\\MP5.csproj",
+      "projectUniqueName": "C:\\Users\\s22798\\Desktop\\MAS\\MP5\\MP5\\MP5.csproj",
       "projectName": "MP5",
-      "projectPath": "E:\\Studia\\MAS\\MAS\\MP5\\MP5\\MP5.csproj",
-      "packagesPath": "C:\\Users\\HARDPC\\.nuget\\packages\\",
-      "outputPath": "E:\\Studia\\MAS\\MAS\\MP5\\MP5\\obj\\",
+      "projectPath": "C:\\Users\\s22798\\Desktop\\MAS\\MP5\\MP5\\MP5.csproj",
+      "packagesPath": "C:\\Users\\s22798\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\s22798\\Desktop\\MAS\\MP5\\MP5\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HARDPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\s22798\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2542,7 +2542,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
