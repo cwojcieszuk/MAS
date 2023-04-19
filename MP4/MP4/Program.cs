@@ -17,10 +17,10 @@ public class Program
         Console.WriteLine("");
         
         //InitAttribute();
-        InitUnique();
+        //InitUnique();
         //InitOrdered();
         //InitBag();
-        //InitXor();
+        InitXor();
         //InitSubset();
         //InitCustom();
     }
@@ -87,7 +87,6 @@ public class Program
         player3.AddBallTeam(ballTeam1);
         
         //player2.AddBallTeam(ballTeam1);
-        Console.WriteLine(player1);
         
         ballTeam1.ShowPlayers();
     }

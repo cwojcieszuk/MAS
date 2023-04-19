@@ -13,7 +13,6 @@ public class Game
     {
         Name = name;
         Studio = studio;
-        
     }
 
     public void ShowPlayers()

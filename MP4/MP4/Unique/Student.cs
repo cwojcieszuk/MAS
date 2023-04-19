@@ -15,9 +15,9 @@ public class Student
 
     private void AddSchool(School school)
     {
-        if(school != null)
+        if(_school != null)
         {
-            School = school;
+            _school = school;
             school.AddStudent(this);
         }
     }

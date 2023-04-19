@@ -6,12 +6,9 @@ public class Team
     public string League { get; set; }
     private FootballPlayer _teamCaptain { get; set; }
 
-    public FootballPlayer TeamCaptain { 
-        get => _teamCaptain;
-        set => SetTeamCaptain(value);
-    }
+    public FootballPlayer TeamCaptain { get => _teamCaptain; set => SetTeamCaptain(value); }
 
-    private List<FootballPlayer> _footballPlayers = new List<FootballPlayer>();
+    private List<FootballPlayer> _footballPlayers = new ();
 
     public Team(string name, string league)
     {
@@ -21,12 +18,10 @@ public class Team
 
     public void AddPlayer(FootballPlayer player)
     {
-        if (!_footballPlayers.Contains(player))
-        {
-            _footballPlayers.Add(player);
+        if (_footballPlayers.Contains(player)) return;
 
-            player.Team = this;
-        }
+        _footballPlayers.Add(player);
+        player.AddTeam(this);
     }
 
     public void SetTeamCaptain(FootballPlayer player)
