@@ -1,2 +1,26 @@
-<mas.frontend-nx-welcome></mas.frontend-nx-welcome>
-<router-outlet></router-outlet>
+<mat-toolbar class="wrapper">
+  <div class="header">
+    <span class="header--text">Strefa kibica</span>
+
+    <a routerLink="bets" routerLinkActive="active">Zakłady</a>
+  </div>
+
+  <div class="wrapper" *ngIf="(authFacade.user$ | async) == null">
+    <button mat-raised-button (click)="login()">Zaloguj</button>
+    <button mat-stroked-button (click)="register()" style="color: white">Zarejestruj</button>
+  </div>
+
+  <div class="wrapper account-details" *ngIf="(authFacade.user$ | async) != null">
+    <div class="wrapper">
+      <span class="money">Stan konta: {{authFacade.accountMoney$ | async }}</span>
+      <button mat-icon-button (click)="addMoney()">
+        <mat-icon style="color: white">add</mat-icon>
+      </button>
+    </div>
+    <span>Hello {{(authFacade.user$ | async)?.email}}</span>
+  </div>
+</mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

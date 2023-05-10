@@ -1,0 +1,35 @@
+<mat-card class="mat-elevation-z3" *ngIf="sportBet">
+  <mat-card-header>
+    {{sportBet.dateTime | date}} {{sportBet.sportname}}
+  </mat-card-header>
+  <mat-card-content>
+    {{sportBet.team1}} - {{sportBet.team2}}
+
+    <div class="options-wrapper">
+        <mat-button-toggle-group [formControl]="sportBetFormControl">
+          <mat-button-toggle class="options" *ngFor="let option of sportBet.options" [value]="option">
+            <span>{{option.betName}}</span>
+            <span>{{option.odds | round}}</span>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="mat-elevation-z3" *ngIf="esportBet">
+  <mat-card-header>
+    {{esportBet.dateTime | date}} {{esportBet.game}}
+  </mat-card-header>
+  <mat-card-content>
+    {{esportBet.team1}} - {{esportBet.team2}}
+
+    <div class="options-wrapper">
+      <mat-button-toggle-group [formControl]="esportBetFormControl">
+        <mat-button-toggle class="options" *ngFor="let option of esportBet.options" [value]="option">
+          <span>{{option.betName}}</span>
+          <span>{{option.odds | round}}</span>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </mat-card-content>
+</mat-card>

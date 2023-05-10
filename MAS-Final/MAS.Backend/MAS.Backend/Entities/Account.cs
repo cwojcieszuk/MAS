@@ -10,8 +10,6 @@ public partial class Account
     public double Money { get; set; }
 
     public string BankAccount { get; set; } = null!;
-
-    public int IdUser { get; set; }
-
+    
     public virtual User IdUserNavigation { get; set; } = null!;
 }

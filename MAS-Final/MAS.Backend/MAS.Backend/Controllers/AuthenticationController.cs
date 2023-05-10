@@ -1,6 +1,8 @@
 ﻿using MAS.Backend.Persistence.Interfaces.Authentication;
 using MAS.Backend.Persistence.Interfaces.Users;
 using MAS.Backend.Requests.Authentication;
+using MAS.Backend.Requests.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MAS.Backend.Controllers;
@@ -49,5 +51,23 @@ public class AuthenticationController : ControllerBase
         }
         
         return Ok(result);
+    }
+
+    [HttpGet("{idUser}")]
+    [Authorize]
+    public async Task<IActionResult> GetUserAccount(int idUser)
+    {
+        var result = await _usersService.GetUserAccount(idUser);
+
+        return Ok(result);
+    }
+
+    [HttpPost("money")]
+    [Authorize]
+    public async Task<IActionResult> AddMoney(AddMoneyRequest request)
+    {
+        await _usersService.AddMoney(request.IdUser, request.Amount);
+
+        return NoContent();
     }
 }

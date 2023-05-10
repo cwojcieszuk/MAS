@@ -1,0 +1,27 @@
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Sportowe">
+    <div *ngIf="(facade.sportBets$ | async)?.length == 0" class="progress-bar">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+
+    <div class="card-container">
+      <ng-container *ngFor="let bet of facade.sportBets$ | async">
+        <app-bet-card [bet]="bet"></app-bet-card>
+      </ng-container>
+    </div>
+  </mat-tab>
+  <mat-tab label="Esportowe">
+    <div *ngIf="(facade.esportBets$ | async)?.length == 0" class="progress-bar">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+
+    <div class="card-container">
+      <ng-container *ngFor="let bet of facade.esportBets$ | async">
+        <app-bet-card [bet]="bet"></app-bet-card>
+      </ng-container>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<app-coupon-card></app-coupon-card>
+

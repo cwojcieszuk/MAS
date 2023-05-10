@@ -37,6 +37,21 @@ public class BetsService : IBetsService
 
     public async Task<IEnumerable<EsportBetsResponse>> GetEsportBets()
     {
-        throw new NotImplementedException();
+        return await _masContext.Bets.Where(bet => bet.IdBetEsport != null).Select(bet =>
+            new EsportBetsResponse(
+                bet.IdBet,
+                bet.Date,
+                bet.IdBetEsport,
+                bet.IdBetEsportNavigation.GameName,
+                bet.IdBetEsportNavigation.Team1,
+                bet.IdBetEsportNavigation.Team2,
+                bet.IdBetEsportNavigation.BetEsportOptions.
+                    Select(betOption => new EsportBetOptions(
+                        betOption.IdBetEsportOption,
+                        betOption.Odds,
+                        betOption.IdBetStatusNavigation.Status,
+                        betOption.IdBetEsportTypeNavigation.Name
+                        )).ToList()
+            )).ToListAsync();
     }
 }

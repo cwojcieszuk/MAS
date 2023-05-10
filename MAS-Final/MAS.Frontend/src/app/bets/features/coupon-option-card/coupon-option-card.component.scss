@@ -1,0 +1,21 @@
+mat-card {
+  padding: 8px;
+}
+
+mat-card-content {
+  padding: 8px;
+}
+
+mat-card-header {
+  padding: 8px;
+
+  div {
+    width: 100%;
+  }
+}
+
+mat-card-footer {
+  border-top: 1px solid #eef0f3;
+  padding-inline: 8px;
+  padding-top: 8px;
+}

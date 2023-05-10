@@ -55,13 +55,42 @@ public class CouponsService : ICouponsService
         _masContext.PlayerBets.Add(playerBet);
         await _masContext.SaveChangesAsync();
 
-        var account = await _masContext.Accounts.FirstOrDefaultAsync(account => account.IdUser == request.IdUser);
+        var account = await _masContext.Accounts.FirstOrDefaultAsync(account => account.IdAccount == request.IdUser);
 
         account.Money -= request.Amount;
 
         await _masContext.SaveChangesAsync();
     }
-    
+
+    public async Task<bool> ValidatePlaceCoupon(PlaceCouponRequest request)
+    {
+        var user = await _masContext.Users.FirstOrDefaultAsync(user => user.IdUser == request.IdUser);
+
+        if (user == null)
+        {
+            return false;
+        }
+        
+        var account = await _masContext.Accounts.FirstOrDefaultAsync(acc => acc.IdAccount == user.IdUser);
+
+        if (account.Money < request.Amount)
+        {
+            return false;
+        }
+
+        if (request.Amount < 2)
+        {
+            return false;
+        }
+
+        if (request.BetEsportOptionIds.Length == 0 && request.BetSportOptionIds.Length == 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     private float CountFullRateForCoupon(List<float> rates)
     {
         return rates.Sum();

@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-label>Kwota</mat-label>
+  <input matInput [formControl]="amountControl">
+</mat-form-field>
+
+<div class="wrapper">
+  <button mat-raised-button (click)="close()">Anuluj</button>
+  <button mat-raised-button (click)="onSubmit()">Doładuj</button>
+</div>

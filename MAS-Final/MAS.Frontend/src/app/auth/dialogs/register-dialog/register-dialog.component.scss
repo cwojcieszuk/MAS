@@ -1,0 +1,19 @@
+:host {
+  overflow: hidden;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+div:not(.wrapper) {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  padding: 1rem;
+}

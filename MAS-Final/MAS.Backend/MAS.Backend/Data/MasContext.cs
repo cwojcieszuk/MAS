@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MAS.Backend.Data.Seeds;
 using MAS.Backend.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -124,6 +125,7 @@ public partial class MasContext : DbContext
             entity.HasOne(d => d.IdBetSportNavigation).WithMany(p => p.Bets)
                 .HasForeignKey(d => d.IdBetSport)
                 .HasConstraintName("Bet_BetSport");
+            entity.Seed();
         });
 
         modelBuilder.Entity<BetCoupon>(entity =>
@@ -163,6 +165,7 @@ public partial class MasContext : DbContext
             entity.Property(e => e.Team2)
                 .HasMaxLength(64)
                 .IsUnicode(false);
+            entity.Seed();
         });
 
         modelBuilder.Entity<BetEsportOption>(entity =>
@@ -185,6 +188,7 @@ public partial class MasContext : DbContext
                 .HasForeignKey(d => d.IdBetStatus)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("BetEsportOption_BetStatus");
+            entity.Seed();
         });
 
         modelBuilder.Entity<BetEsportType>(entity =>
@@ -196,6 +200,7 @@ public partial class MasContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(128)
                 .IsUnicode(false);
+            entity.Seed();
         });
 
         modelBuilder.Entity<BetSport>(entity =>
@@ -213,6 +218,7 @@ public partial class MasContext : DbContext
             entity.Property(e => e.Team2)
                 .HasMaxLength(64)
                 .IsUnicode(false);
+            entity.Seed();
         });
 
         modelBuilder.Entity<BetSportOption>(entity =>
@@ -235,6 +241,7 @@ public partial class MasContext : DbContext
                 .HasForeignKey(d => d.IdBetStatus)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("BetSportTypeOdds_BetStatus");
+            entity.Seed();
         });
 
         modelBuilder.Entity<BetSportType>(entity =>
@@ -246,6 +253,7 @@ public partial class MasContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(128)
                 .IsUnicode(false);
+            entity.Seed();
         });
 
         modelBuilder.Entity<BetStatus>(entity =>
@@ -257,6 +265,7 @@ public partial class MasContext : DbContext
             entity.Property(e => e.Status)
                 .HasMaxLength(64)
                 .IsUnicode(false);
+            entity.Seed();
         });
 
         modelBuilder.Entity<Coupon>(entity =>

@@ -1,0 +1,16 @@
+<form [formGroup]="formGroup">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Hasło</mat-label>
+    <input matInput formControlName="password" type="password">
+  </mat-form-field>
+</form>
+
+<div class="wrapper">
+  <button mat-raised-button (click)="close()">Anuluj</button>
+  <button mat-raised-button (click)="onSubmit()">Zaloguj</button>
+</div>

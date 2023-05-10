@@ -44,7 +44,7 @@ public class AuthenticationService : IAuthenticationService
         _masContext.Users.Add(user);
         await _masContext.SaveChangesAsync();
         
-        Account account = new Account { IdAccount = user.IdUser, BankAccount = request.BankAccount, Money = 0, IdUser = user.IdUser };
+        Account account = new Account { IdAccount = user.IdUser, BankAccount = request.BankAccount, Money = 0 };
 
         _masContext.Accounts.Add(account);
         await _masContext.SaveChangesAsync();

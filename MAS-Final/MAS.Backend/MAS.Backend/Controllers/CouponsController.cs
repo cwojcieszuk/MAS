@@ -17,8 +17,16 @@ public class CouponsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> PlaceCoupon(PlaceCouponRequest request)
     {
+        var validationResult = await _couponsService.ValidatePlaceCoupon(request);
+
+        if (validationResult == false)
+        {
+            return BadRequest();
+        }
+        
         await _couponsService.PlaceCoupon(request);
         return NoContent();
     }

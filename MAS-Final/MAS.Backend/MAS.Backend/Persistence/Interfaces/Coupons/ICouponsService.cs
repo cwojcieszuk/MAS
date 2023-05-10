@@ -5,4 +5,5 @@ namespace MAS.Backend.Persistence.Interfaces.Coupons;
 public interface ICouponsService
 {
     Task PlaceCoupon(PlaceCouponRequest request);
+    Task<bool> ValidatePlaceCoupon(PlaceCouponRequest request);
 }

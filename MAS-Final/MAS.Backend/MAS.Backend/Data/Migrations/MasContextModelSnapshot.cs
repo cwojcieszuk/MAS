@@ -33,9 +33,6 @@ namespace MAS.Backend.Data.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(256)");
 
-                    b.Property<int>("IdUser")
-                        .HasColumnType("int");
-
                     b.Property<double>("Money")
                         .HasColumnType("float");
 
@@ -125,6 +122,50 @@ namespace MAS.Backend.Data.Migrations
                     b.HasIndex("IdBetSport");
 
                     b.ToTable("Bet", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdBet = 1,
+                            Date = new DateTime(2023, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdBetSport = 1
+                        },
+                        new
+                        {
+                            IdBet = 2,
+                            Date = new DateTime(2023, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdBetSport = 2
+                        },
+                        new
+                        {
+                            IdBet = 3,
+                            Date = new DateTime(2023, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdBetSport = 3
+                        },
+                        new
+                        {
+                            IdBet = 4,
+                            Date = new DateTime(2023, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdBetSport = 4
+                        },
+                        new
+                        {
+                            IdBet = 5,
+                            Date = new DateTime(2023, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdBetEsport = 1
+                        },
+                        new
+                        {
+                            IdBet = 6,
+                            Date = new DateTime(2023, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdBetEsport = 2
+                        },
+                        new
+                        {
+                            IdBet = 7,
+                            Date = new DateTime(2023, 5, 18, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdBetEsport = 3
+                        });
                 });
 
             modelBuilder.Entity("MAS.Backend.Entities.BetCoupon", b =>
@@ -186,6 +227,29 @@ namespace MAS.Backend.Data.Migrations
                         .HasName("BetEsport_pk");
 
                     b.ToTable("BetEsport", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdBetEsport = 1,
+                            GameName = "CS:GO",
+                            Team1 = "FaZe Clan",
+                            Team2 = "Virtus Pro"
+                        },
+                        new
+                        {
+                            IdBetEsport = 2,
+                            GameName = "CS:GO",
+                            Team1 = "NIP",
+                            Team2 = "Vitality"
+                        },
+                        new
+                        {
+                            IdBetEsport = 3,
+                            GameName = "CS:GO",
+                            Team1 = "Cloud9",
+                            Team2 = "G2"
+                        });
                 });
 
             modelBuilder.Entity("MAS.Backend.Entities.BetEsportOption", b =>
@@ -218,6 +282,80 @@ namespace MAS.Backend.Data.Migrations
                     b.HasIndex("IdBetStatus");
 
                     b.ToTable("BetEsportOption", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdBetEsportOption = 1,
+                            IdBetEsport = 1,
+                            IdBetEsportType = 1,
+                            IdBetStatus = 1,
+                            Odds = 1.5f
+                        },
+                        new
+                        {
+                            IdBetEsportOption = 2,
+                            IdBetEsport = 1,
+                            IdBetEsportType = 3,
+                            IdBetStatus = 1,
+                            Odds = 5.1f
+                        },
+                        new
+                        {
+                            IdBetEsportOption = 3,
+                            IdBetEsport = 1,
+                            IdBetEsportType = 2,
+                            IdBetStatus = 1,
+                            Odds = 2.9f
+                        },
+                        new
+                        {
+                            IdBetEsportOption = 4,
+                            IdBetEsport = 2,
+                            IdBetEsportType = 1,
+                            IdBetStatus = 1,
+                            Odds = 1.8f
+                        },
+                        new
+                        {
+                            IdBetEsportOption = 5,
+                            IdBetEsport = 2,
+                            IdBetEsportType = 3,
+                            IdBetStatus = 1,
+                            Odds = 2.5f
+                        },
+                        new
+                        {
+                            IdBetEsportOption = 6,
+                            IdBetEsport = 2,
+                            IdBetEsportType = 2,
+                            IdBetStatus = 1,
+                            Odds = 6.7f
+                        },
+                        new
+                        {
+                            IdBetEsportOption = 7,
+                            IdBetEsport = 3,
+                            IdBetEsportType = 1,
+                            IdBetStatus = 1,
+                            Odds = 2.5f
+                        },
+                        new
+                        {
+                            IdBetEsportOption = 8,
+                            IdBetEsport = 3,
+                            IdBetEsportType = 3,
+                            IdBetStatus = 1,
+                            Odds = 6f
+                        },
+                        new
+                        {
+                            IdBetEsportOption = 9,
+                            IdBetEsport = 3,
+                            IdBetEsportType = 2,
+                            IdBetStatus = 1,
+                            Odds = 1.15f
+                        });
                 });
 
             modelBuilder.Entity("MAS.Backend.Entities.BetEsportType", b =>
@@ -238,6 +376,23 @@ namespace MAS.Backend.Data.Migrations
                         .HasName("BetEsportType_pk");
 
                     b.ToTable("BetEsportType", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdBetEsportType = 1,
+                            Name = "Wygra 1 drużyna"
+                        },
+                        new
+                        {
+                            IdBetEsportType = 2,
+                            Name = "Wygra 2 drużyna"
+                        },
+                        new
+                        {
+                            IdBetEsportType = 3,
+                            Name = "Remis"
+                        });
                 });
 
             modelBuilder.Entity("MAS.Backend.Entities.BetSport", b =>
@@ -270,6 +425,36 @@ namespace MAS.Backend.Data.Migrations
                         .HasName("BetSport_pk");
 
                     b.ToTable("BetSport", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdBetSport = 1,
+                            SportName = "Piłka nożna",
+                            Team1 = "Manchester United",
+                            Team2 = "Manchester City"
+                        },
+                        new
+                        {
+                            IdBetSport = 2,
+                            SportName = "Piłka nożna",
+                            Team1 = "Arsenal",
+                            Team2 = "Liverpool"
+                        },
+                        new
+                        {
+                            IdBetSport = 3,
+                            SportName = "Piłka nożna",
+                            Team1 = "Fc Barcelona",
+                            Team2 = "Real Madryt"
+                        },
+                        new
+                        {
+                            IdBetSport = 4,
+                            SportName = "Piłka nożna",
+                            Team1 = "PSG",
+                            Team2 = "Bayern Monachium"
+                        });
                 });
 
             modelBuilder.Entity("MAS.Backend.Entities.BetSportOption", b =>
@@ -302,6 +487,104 @@ namespace MAS.Backend.Data.Migrations
                     b.HasIndex("IdBetStatus");
 
                     b.ToTable("BetSportOption", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdBetSportOption = 1,
+                            IdBetSport = 1,
+                            IdBetSportType = 1,
+                            IdBetStatus = 1,
+                            Odds = 1.3f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 2,
+                            IdBetSport = 1,
+                            IdBetSportType = 3,
+                            IdBetStatus = 1,
+                            Odds = 1.6f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 3,
+                            IdBetSport = 1,
+                            IdBetSportType = 2,
+                            IdBetStatus = 1,
+                            Odds = 2.5f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 4,
+                            IdBetSport = 2,
+                            IdBetSportType = 1,
+                            IdBetStatus = 1,
+                            Odds = 1.4f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 5,
+                            IdBetSport = 2,
+                            IdBetSportType = 3,
+                            IdBetStatus = 1,
+                            Odds = 2.4f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 6,
+                            IdBetSport = 2,
+                            IdBetSportType = 2,
+                            IdBetStatus = 1,
+                            Odds = 2.5f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 7,
+                            IdBetSport = 3,
+                            IdBetSportType = 1,
+                            IdBetStatus = 1,
+                            Odds = 1.9f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 8,
+                            IdBetSport = 3,
+                            IdBetSportType = 3,
+                            IdBetStatus = 1,
+                            Odds = 4f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 9,
+                            IdBetSport = 3,
+                            IdBetSportType = 2,
+                            IdBetStatus = 1,
+                            Odds = 1.19f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 10,
+                            IdBetSport = 4,
+                            IdBetSportType = 1,
+                            IdBetStatus = 1,
+                            Odds = 19f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 11,
+                            IdBetSport = 4,
+                            IdBetSportType = 3,
+                            IdBetStatus = 1,
+                            Odds = 3f
+                        },
+                        new
+                        {
+                            IdBetSportOption = 12,
+                            IdBetSport = 4,
+                            IdBetSportType = 2,
+                            IdBetStatus = 1,
+                            Odds = 1.7f
+                        });
                 });
 
             modelBuilder.Entity("MAS.Backend.Entities.BetSportType", b =>
@@ -322,6 +605,23 @@ namespace MAS.Backend.Data.Migrations
                         .HasName("BetSportType_pk");
 
                     b.ToTable("BetSportType", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdBetSportType = 1,
+                            Name = "Wygra 1 drużyna"
+                        },
+                        new
+                        {
+                            IdBetSportType = 2,
+                            Name = "Wygra 1 drużyna"
+                        },
+                        new
+                        {
+                            IdBetSportType = 3,
+                            Name = "Remis"
+                        });
                 });
 
             modelBuilder.Entity("MAS.Backend.Entities.BetStatus", b =>
@@ -342,6 +642,28 @@ namespace MAS.Backend.Data.Migrations
                         .HasName("BetStatus_pk");
 
                     b.ToTable("BetStatus", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdBetStatus = 1,
+                            Status = "Nierozpoczęto"
+                        },
+                        new
+                        {
+                            IdBetStatus = 2,
+                            Status = "W trakcie"
+                        },
+                        new
+                        {
+                            IdBetStatus = 3,
+                            Status = "Wygrany"
+                        },
+                        new
+                        {
+                            IdBetStatus = 4,
+                            Status = "Przegrany"
+                        });
                 });
 
             modelBuilder.Entity("MAS.Backend.Entities.Coupon", b =>

@@ -1,0 +1,29 @@
+<mat-card class="mat-elevation-z3">
+  <mat-card-header>Mój kupon</mat-card-header>
+  <mat-card-content>
+    <div *ngFor="let option of (facade.couponOptions$ | async)">
+      <app-coupon-option-card [couponOption]="option"></app-coupon-option-card>
+    </div>
+  </mat-card-content>
+
+  <mat-card-footer>
+    <div class="wrapper">
+      <div class="wrapper">
+        <span>Kurs</span>
+        <div class="rate">{{facade.fullRate$ | async | round}}</div>
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Stawka</mat-label>
+        <input matInput [formControl]="amountFormControl">
+      </mat-form-field>
+    </div>
+
+    <div class="wrapper">
+      <span>Potencjalna wygrana: </span>
+      <span>{{facade.potentialWin$ | async | round}}zł</span>
+    </div>
+
+    <button mat-raised-button [disabled]="(facade.canPlaceCupon$ | async) === false" (click)="placeCoupon()">Obstaw</button>
+    <span class="error" *ngIf="authError">Aby postawić kupon musisz być zalogowany</span>
+  </mat-card-footer>
+</mat-card>
