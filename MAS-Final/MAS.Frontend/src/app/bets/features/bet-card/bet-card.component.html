@@ -6,12 +6,12 @@
     {{sportBet.team1}} - {{sportBet.team2}}
 
     <div class="options-wrapper">
-        <mat-button-toggle-group [formControl]="sportBetFormControl">
-          <mat-button-toggle class="options" *ngFor="let option of sportBet.options" [value]="option">
-            <span>{{option.betName}}</span>
-            <span>{{option.odds | round}}</span>
-          </mat-button-toggle>
-        </mat-button-toggle-group>
+      <mat-chip-listbox #sportListbox>
+        <mat-chip-option class="options" *ngFor="let option of sportBet.options" (click)="emitSportBetOption(option)">
+          <span>{{option.betName}}</span>
+          <span>{{option.odds | round}}</span>
+        </mat-chip-option>
+      </mat-chip-listbox>
     </div>
   </mat-card-content>
 </mat-card>
@@ -24,12 +24,12 @@
     {{esportBet.team1}} - {{esportBet.team2}}
 
     <div class="options-wrapper">
-      <mat-button-toggle-group [formControl]="esportBetFormControl">
-        <mat-button-toggle class="options" *ngFor="let option of esportBet.options" [value]="option">
+      <mat-chip-listbox #esportListbox>
+        <mat-chip-option class="options" *ngFor="let option of esportBet.options" (click)="emitEsportBetOption(option)">
           <span>{{option.betName}}</span>
           <span>{{option.odds | round}}</span>
-        </mat-button-toggle>
-      </mat-button-toggle-group>
+        </mat-chip-option>
+      </mat-chip-listbox>
     </div>
   </mat-card-content>
 </mat-card>

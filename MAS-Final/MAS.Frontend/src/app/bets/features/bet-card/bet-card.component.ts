@@ -1,21 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { SportBetModel, SportBetOption, SportBetWithOption } from '../../models/sport-bet.model';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { BaseComponent } from '../../../shared/components/base.component';
 import { BetsFacade } from '../../+state/bets.facade';
-import { filter } from 'rxjs';
 import { EsportBetModel, EsportBetOption, EsportBetWithOption } from '../../models/esport-bet.model';
+import { MatChipListbox } from '@angular/material/chips';
 
 @Component({
   selector: 'app-bet-card',
   templateUrl: './bet-card.component.html',
   styleUrls: ['./bet-card.component.scss']
 })
-export class BetCardComponent extends BaseComponent implements OnInit{
+export class BetCardComponent extends BaseComponent implements OnInit, AfterViewInit {
   @Input() bet!: SportBetModel | EsportBetModel;
-
-  sportBetFormControl = this.fb.control<SportBetOption | null>(null);
-  esportBetFormControl = this.fb.control<EsportBetOption | null>(null);
+  @ViewChild('sportListbox') sportListBox!: MatChipListbox;
+  @ViewChild('esportListbox') esportListBox!: MatChipListbox;
 
   lastSportIndex: number | null = null;
   lastEsportIndex: number | null = null;
@@ -23,11 +22,48 @@ export class BetCardComponent extends BaseComponent implements OnInit{
   sportBet: SportBetModel | null = null;
   esportBet: EsportBetModel | null = null;
 
+  sportBets: SportBetWithOption[] = [];
+  esportBets: EsportBetWithOption[] = [];
+
   constructor(
     private fb: NonNullableFormBuilder,
     private facade: BetsFacade
   ) {
     super();
+  }
+
+  emitSportBetOption(option: SportBetOption): void {
+    if(this.sportBets.some(obj => obj.idBetSportOption === option.idBetSportOption)) {
+      this.facade.removeSportBetOption(option.idBetSportOption);
+
+      return;
+    }
+
+    if(this.lastSportIndex != null) {
+      this.facade.removeSportBetOption(this.lastSportIndex);
+    }
+
+    this.lastSportIndex = option.idBetSportOption;
+
+    const obj = {...this.sportBet, ...option} as SportBetWithOption;
+    this.facade.addSportBetOption(obj);
+  }
+
+  emitEsportBetOption(option: EsportBetOption): void {
+    if(this.esportBets.some(obj => obj.idBetEsportOption === option.idBetEsportOption)) {
+      this.facade.removeEsportBetOption(option.idBetEsportOption);
+
+      return;
+    }
+
+    if(this.lastEsportIndex != null) {
+      this.facade.removeEsportBetOption(this.lastEsportIndex);
+    }
+
+    this.lastEsportIndex = option.idBetEsportOption;
+
+    const obj = {...this.esportBet, ...option} as EsportBetWithOption;
+    this.facade.addEsportBetOption(obj);
   }
 
   ngOnInit(): void {
@@ -39,30 +75,25 @@ export class BetCardComponent extends BaseComponent implements OnInit{
       this.esportBet = this.bet;
     }
 
-    this.observe(this.esportBetFormControl.valueChanges)
-      .pipe(filter(Boolean))
+    this.observe(this.facade.couponSportOptions$)
+      .subscribe(value => { this.sportBets = value; });
+
+    this.observe(this.facade.couponEsportOptions$)
+      .subscribe(value => { this.esportBets = value; });
+  }
+
+  ngAfterViewInit(): void {
+    this.observe(this.facade.shouldRefreshChips$)
       .subscribe(value => {
-        if(this.lastEsportIndex != null) {
-          this.facade.removeEsportBetOption(this.lastEsportIndex);
+        if(value) {
+         if(this.sportBet) {
+           this.sportListBox._chips.forEach(chip => chip.deselect());
+         }
+
+         if(this.esportBet) {
+           this.esportListBox._chips.forEach(chip => chip.deselect());
+         }
         }
-
-        this.lastEsportIndex = value.idBetEsportOption;
-
-        const obj = {...this.esportBet, ...value} as EsportBetWithOption;
-        this.facade.addEsportBetOption(obj);
-      });
-
-    this.observe(this.sportBetFormControl.valueChanges)
-      .pipe(filter(Boolean))
-      .subscribe(value => {
-        if(this.lastSportIndex != null) {
-          this.facade.removeSportBetOption(this.lastSportIndex);
-        }
-
-        this.lastSportIndex = value.idBetSportOption;
-
-        const obj = {...this.sportBet, ...value} as SportBetWithOption;
-        this.facade.addSportBetOption(obj);
       });
   }
 }

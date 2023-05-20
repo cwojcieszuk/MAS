@@ -11,13 +11,18 @@
   }
 
   .options {
-    width: 150px;
-    line-height: 0;
+    padding: .4rem;
+    padding-inline: 1rem;
+    background: #ffcc00;
+    text-align: center;
+
+    span {
+      display: block;
+      text-align: center;
+    }
 
     span:nth-child(1) {
-      display: block;
       font-size: 12px;
-
     }
   }
 }

@@ -18,6 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { CouponOptionCardComponent } from './features/coupon-option-card/coupon-option-card.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatIconModule,
         MatTabsModule,
         MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatLegacyChipsModule,
     ]
 })
 export class BetsModule { }

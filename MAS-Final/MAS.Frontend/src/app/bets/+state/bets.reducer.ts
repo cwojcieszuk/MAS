@@ -1,6 +1,6 @@
 import { SportBetModel } from '../models/sport-bet.model';
 import { createReducer, on } from '@ngrx/store';
-import { betsActions } from './bets.actions';
+import { BetsActions } from './bets.actions';
 import { CouponModel } from '../models/coupon-model';
 import { EsportBetModel } from '../models/esport-bet.model';
 
@@ -12,6 +12,8 @@ export interface BetsState {
   coupon: CouponModel;
   isLoading: boolean;
   shouldClearAmount: boolean;
+  isCouponLoading: boolean;
+  shouldRefreshChips: boolean;
 }
 
 const initialState: BetsState = {
@@ -24,53 +26,63 @@ const initialState: BetsState = {
     esportBetOptions: [],
   },
   shouldClearAmount: false,
+  isCouponLoading: false,
+  shouldRefreshChips: false,
 }
 
 export const betsReducer = createReducer(
   initialState,
-  on(betsActions.fetchSportBetsSuccess, (state, action) => ({
+  on(BetsActions.fetchSportBetsSuccess, (state, action) => ({
     ...state,
     sportBets: action.bets,
   })),
-  on(betsActions.fetchEsportBetsSuccess, (state, action) => ({
+  on(BetsActions.fetchEsportBetsSuccess, (state, action) => ({
     ...state,
     esportBets: action.bets,
   })),
-  on(betsActions.addEsportBetOption, (state, action) => ({
+  on(BetsActions.addEsportBetOption, (state, action) => ({
     ...state,
     coupon: ({
       ...state.coupon,
       esportBetOptions: state.coupon.esportBetOptions.concat(action.option),
     })
   })),
-  on(betsActions.removeEsportBetOption, (state, action) => ({
+  on(BetsActions.removeEsportBetOption, (state, action) => ({
     ...state,
     coupon: ({
       ...state.coupon,
       esportBetOptions: state.coupon.esportBetOptions.filter(option => option.idBetEsportOption !== action.index),
     })
   })),
-  on(betsActions.addSportBetOption, (state, action) => ({
+  on(BetsActions.addSportBetOption, (state, action) => ({
     ...state,
     coupon: ({
       ...state.coupon,
       sportBetOptions: state.coupon.sportBetOptions.concat(action.option)})
   })),
-  on(betsActions.removeSportBetOption, (state, action) => ({
+  on(BetsActions.removeSportBetOption, (state, action) => ({
     ...state,
     coupon: ({
       ...state.coupon,
       sportBetOptions: state.coupon.sportBetOptions.filter(option => option.idBetSportOption !== action.index),
     })
   })),
-  on(betsActions.setCouponAmount, (state, action) => ({
+  on(BetsActions.setCouponAmount, (state, action) => ({
     ...state,
     coupon: ({
       ...state.coupon,
       amount: action.amount,
     })
   })),
-  on(betsActions.placeCouponSuccess, state => ({
+  on(BetsActions.placeCoupon, state => ({
+    ...state,
+    isCouponLoading: true,
+  })),
+  on(BetsActions.placeCouponFailure, state => ({
+    ...state,
+    isCouponLoading: false,
+  })),
+  on(BetsActions.placeCouponSuccess, state => ({
     ...state,
     coupon: {
       amount: 0,
@@ -78,5 +90,11 @@ export const betsReducer = createReducer(
       esportBetOptions: [],
     },
     shouldClearAmount: true,
+    isCouponLoading: false,
+    shouldRefreshChips: true,
+  })),
+  on(BetsActions.placeCoupon, BetsActions.placeCouponFailure, state => ({
+    ...state,
+    shouldRefreshChips: false,
   }))
 );

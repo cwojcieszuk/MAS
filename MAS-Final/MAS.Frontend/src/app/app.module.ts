@@ -18,6 +18,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RoundPipe } from './shared/pipes/round.pipe';
 import { MatIconModule } from '@angular/material/icon';
+import { AtomSpinnerModule } from 'angular-epic-spinners';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { MatIconModule } from '@angular/material/icon';
       positionClass: 'toast-bottom-right',
     }),
     RoundPipe,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule,
   ],
   providers: [
     {

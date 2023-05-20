@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { BETS_FEATURE_KEY, BetsState } from './bets.reducer';
+import { getAccountMoney } from '../../auth/+state/auth.selectors';
 
 export const getBetsState = createFeatureSelector<BetsState>(BETS_FEATURE_KEY);
 
@@ -44,7 +45,11 @@ export const getPotentialWin = createSelector(
 
 export const canPlaceCoupon = createSelector(
   getCoupon,
-  coupon => coupon.amount > 1 && coupon.sportBetOptions.length > 0
+  getAccountMoney,
+  (coupon, money) =>
+    coupon.amount > 1 &&
+    (coupon.sportBetOptions.length > 0 || coupon.esportBetOptions.length > 0)
+    && money! >= coupon.amount,
 );
 
 export const shouldClearAmount = createSelector(
@@ -57,4 +62,24 @@ export const getCouponOptions = createSelector(
   state => {
     return [...state.coupon.esportBetOptions, ...state.coupon.sportBetOptions];
   }
+);
+
+export const getCouponEsportOptions = createSelector(
+  getBetsState,
+  state => state.coupon.esportBetOptions,
+);
+
+export const getCouponSportOptions = createSelector(
+  getBetsState,
+  state => state.coupon.sportBetOptions,
+);
+
+export const getIsCouponLoading = createSelector(
+  getBetsState,
+  state => state.isCouponLoading,
+);
+
+export const getShouldRefreshChips = createSelector(
+  getBetsState,
+  state => state.shouldRefreshChips,
 );
