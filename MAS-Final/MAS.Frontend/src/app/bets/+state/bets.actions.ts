@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { SportBetModel, SportBetWithOption } from '../models/sport-bet.model';
 import { EsportBetModel, EsportBetWithOption } from '../models/esport-bet.model';
 
-export const betsActions = {
+export const BetsActions = {
   init: createAction(
     '[Bets/API] Init',
   ),

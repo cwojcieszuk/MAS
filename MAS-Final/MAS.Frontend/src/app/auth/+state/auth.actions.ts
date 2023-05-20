@@ -50,4 +50,7 @@ export const AuthActions = {
   addMoneyFailure: createAction(
     '[Auth/API] Add money failure'
   ),
+  logout: createAction(
+    '[Auth] Logout',
+  ),
 }

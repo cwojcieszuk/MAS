@@ -26,5 +26,11 @@ export const authReducer = createReducer(
   on(AuthActions.fetchAccountSuccess, (state, action) => ({
     ...state,
     money: action.money,
+  })),
+  on(AuthActions.logout, state => ({
+    ...state,
+    user: undefined,
+    money: undefined,
+    accessToken: undefined,
   }))
 );

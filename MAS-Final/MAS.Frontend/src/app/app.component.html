@@ -18,6 +18,9 @@
       </button>
     </div>
     <span>Hello {{(authFacade.user$ | async)?.email}}</span>
+    <button mat-icon-button [matTooltip]="'Wyloguj się'" (click)="authFacade.logout()">
+      <mat-icon style="color: white">logout</mat-icon>
+    </button>
   </div>
 </mat-toolbar>
 

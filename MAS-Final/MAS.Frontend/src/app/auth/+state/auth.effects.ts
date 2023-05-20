@@ -7,7 +7,7 @@ import { LoginSuccessProps } from './props/login-success.props';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStorageHelpers } from '../../shared/helpers/local-storage.helpers';
 import { AuthFacade } from './auth.facade';
-import { betsActions } from '../../bets/+state/bets.actions';
+import { BetsActions } from '../../bets/+state/bets.actions';
 
 @Injectable({ providedIn: 'root' })
 export class AuthEffects {
@@ -62,7 +62,7 @@ export class AuthEffects {
 
   init$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.init, AuthActions.addMoneySuccess, betsActions.placeCouponSuccess),
+      ofType(AuthActions.init, AuthActions.addMoneySuccess, BetsActions.placeCouponSuccess),
       map(() => AuthActions.fetchAccount())
     ));
 
@@ -87,6 +87,12 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.addMoneyFailure),
       tap(() => this.toastr.error('Nie udało się doładować konta'))
+    ), { dispatch: false });
+
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.logout),
+      tap(() => LocalStorageHelpers.removeAccessToken())
     ), { dispatch: false });
 
   constructor(

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { betsActions } from './bets.actions';
+import { BetsActions } from './bets.actions';
 import { catchError, map, mergeMap, of, tap, withLatestFrom } from 'rxjs';
 import { BetsService } from '../bets.service';
 import { AuthFacade } from '../../auth/+state/auth.facade';
@@ -12,60 +12,60 @@ import { ToastrService } from 'ngx-toastr';
 export class BetsEffects {
   init$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(betsActions.init),
-      map(() => betsActions.fetchSportBets())
+      ofType(BetsActions.init),
+      map(() => BetsActions.fetchSportBets())
     ));
 
   init2$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(betsActions.init),
-      map(() => betsActions.fetchEsportBets())
+      ofType(BetsActions.init),
+      map(() => BetsActions.fetchEsportBets())
     ));
 
   fetchSportBets$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(betsActions.fetchSportBets),
+      ofType(BetsActions.fetchSportBets),
       mergeMap(() => this.betsService.fetchSportBets().pipe(
-        map(result => betsActions.fetchSportBetsSuccess({ bets: result })),
-        catchError(() => of(betsActions.fetchSportBetsFailure()))
+        map(result => BetsActions.fetchSportBetsSuccess({ bets: result })),
+        catchError(() => of(BetsActions.fetchSportBetsFailure()))
       ))
     ));
 
   fetchBetsFail$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(betsActions.fetchSportBetsFailure, betsActions.fetchEsportBetsFailure),
+      ofType(BetsActions.fetchSportBetsFailure, BetsActions.fetchEsportBetsFailure),
       tap(() => this.toastr.error('Nie udało się pobrać zakładów'))
     ), { dispatch: false });
 
   fetchEsportBets$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(betsActions.fetchEsportBets),
+      ofType(BetsActions.fetchEsportBets),
       mergeMap(() => this.betsService.fetchEsportBets().pipe(
-        map(result => betsActions.fetchEsportBetsSuccess({ bets: result })),
-        catchError(() => of(betsActions.fetchEsportBetsFailure()))
+        map(result => BetsActions.fetchEsportBetsSuccess({ bets: result })),
+        catchError(() => of(BetsActions.fetchEsportBetsFailure()))
       ))
     ));
 
   placeCoupon$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(betsActions.placeCoupon),
+      ofType(BetsActions.placeCoupon),
       withLatestFrom(this.betsFacade.coupon$, this.authFacade.user$),
-      map(([, coupon, user]) => ({ idUser: user?.userId, amount: coupon.amount, betSportOptionIds: coupon.sportBetOptions.map(option => option.idBetSportOption), betEsportOptionIds: []}) as PlaceCouponParams),
+      map(([, coupon, user]) => ({ idUser: user?.userId, amount: coupon.amount, betSportOptionIds: coupon.sportBetOptions.map(option => option.idBetSportOption), betEsportOptionIds: coupon.esportBetOptions.map(option => option.idBetEsportOption)}) as PlaceCouponParams),
       mergeMap(params => this.betsService.placeCoupon(params).pipe(
-        map(() => betsActions.placeCouponSuccess()),
-        catchError(() => of(betsActions.placeCouponFailure()))
+        map(() => BetsActions.placeCouponSuccess()),
+        catchError(() => of(BetsActions.placeCouponFailure()))
       ))
     ));
 
   placeCouponSuccess$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(betsActions.placeCouponSuccess),
+      ofType(BetsActions.placeCouponSuccess),
       tap(() => this.toastr.success('Pomyslnie postawiono kupon!'))
     ), { dispatch: false });
 
   placeCouponFailure$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(betsActions.placeCouponFailure),
+      ofType(BetsActions.placeCouponFailure),
       tap(() => this.toastr.error('Nie udało się postawić kuponu'))
     ), { dispatch: false });
 

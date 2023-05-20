@@ -29,4 +29,8 @@ export class AuthFacade {
   addMoney(amount: number): void {
     this.store.dispatch(AuthActions.addMoney({ amount }));
   }
+
+  logout(): void {
+    this.store.dispatch(AuthActions.logout());
+  }
 }
