@@ -1,38 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'constants';
+@use 'mixins';
+@use 'global';
 
-html, body { height: 100%; }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-body {
-  background: #eef0f3;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.flex {
-  display: flex;
-  gap: .2rem;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.error {
-  color: #d2161e;
-}
-
-.progress-bar {
-  width: 932px;
-}
-
-// regular style toast
 @import 'ngx-toastr/toastr';
-

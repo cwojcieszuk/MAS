@@ -29,6 +29,11 @@ public class AuthenticationController : ControllerBase
             return BadRequest("User with this email already exists!");
         }
 
+        if (request.Password.Length < 8)
+        {
+            return BadRequest("Password length must be at least 8");
+        }
+
         var result = await _authenticationService.Register(request);
 
         return Ok(result);

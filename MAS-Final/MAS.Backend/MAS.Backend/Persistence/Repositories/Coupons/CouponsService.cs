@@ -83,7 +83,7 @@ public class CouponsService : ICouponsService
             return false;
         }
 
-        if (request.BetEsportOptionIds.Length == 0 || request.BetSportOptionIds.Length == 0)
+        if (request.BetEsportOptionIds.Length == 0 && request.BetSportOptionIds.Length == 0)
         {
             return false;
         }

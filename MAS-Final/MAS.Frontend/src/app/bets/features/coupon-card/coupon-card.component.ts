@@ -28,7 +28,7 @@ export class CouponCardComponent extends BaseComponent implements OnInit {
     this.observe(this.facade.shouldClearAmount$)
       .subscribe(value => {
         if(value) {
-          this.amountFormControl.reset(0);
+          this.amountFormControl.patchValue(0);
         }
       });
 

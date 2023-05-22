@@ -77,10 +77,12 @@ export const betsReducer = createReducer(
   on(BetsActions.placeCoupon, state => ({
     ...state,
     isCouponLoading: true,
+    shouldClearAmount: false,
   })),
   on(BetsActions.placeCouponFailure, state => ({
     ...state,
     isCouponLoading: false,
+    shouldClearAmount: false,
   })),
   on(BetsActions.placeCouponSuccess, state => ({
     ...state,
