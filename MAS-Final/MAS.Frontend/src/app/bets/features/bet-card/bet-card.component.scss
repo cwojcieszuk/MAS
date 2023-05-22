@@ -1,4 +1,4 @@
-
+@use 'src/mixins' as *;
 
 .mat-mdc-card-content {
   width: 900px;
@@ -6,8 +6,16 @@
   justify-content: space-between;
   align-items: center;
 
-  mat-button-toggle-group {
-    display: flex;
+  @include sm {
+    width: 250px;
+  }
+
+  @include md {
+    width: 450px;
+
+    ::ng-deep.mdc-evolution-chip-set__chips {
+      display: grid !important;
+    }
   }
 
   .options {
@@ -16,9 +24,22 @@
     background: #ffcc00;
     text-align: center;
 
-    span {
+    ::ng-deep.mdc-evolution-chip__text-label {
+      display: grid;
+      place-items: center;
+
+      span {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @include sm {
+      padding-inline: .1rem;
+    }
+
+    ::ng-deep.mdc-evolution-chip__cell {
       display: block;
-      text-align: center;
     }
 
     span:nth-child(1) {

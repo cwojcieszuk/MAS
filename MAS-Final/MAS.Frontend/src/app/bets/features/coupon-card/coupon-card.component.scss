@@ -1,7 +1,13 @@
+@use 'src/mixins' as *;
+
 .mat-mdc-card {
   height: 800px;
   width: 400px;
   padding: 1rem;
+
+  @include lg {
+    width: 100%;
+  }
 }
 
 button {

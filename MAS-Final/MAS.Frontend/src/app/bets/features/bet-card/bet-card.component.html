@@ -5,14 +5,12 @@
   <mat-card-content>
     {{sportBet.team1}} - {{sportBet.team2}}
 
-    <div class="options-wrapper">
-      <mat-chip-listbox #sportListbox>
-        <mat-chip-option class="options" *ngFor="let option of sportBet.options" (click)="emitSportBetOption(option)">
-          <span>{{option.betName}}</span>
-          <span>{{option.odds | round}}</span>
-        </mat-chip-option>
-      </mat-chip-listbox>
-    </div>
+    <mat-chip-listbox #sportListbox>
+      <mat-chip-option class="options" *ngFor="let option of sportBet.options" (click)="emitSportBetOption(option)">
+        <span>{{option.betName}}</span>
+        <span>{{option.odds | round}}</span>
+      </mat-chip-option>
+    </mat-chip-listbox>
   </mat-card-content>
 </mat-card>
 
@@ -23,13 +21,11 @@
   <mat-card-content>
     {{esportBet.team1}} - {{esportBet.team2}}
 
-    <div class="options-wrapper">
-      <mat-chip-listbox #esportListbox>
-        <mat-chip-option class="options" *ngFor="let option of esportBet.options" (click)="emitEsportBetOption(option)">
-          <span>{{option.betName}}</span>
-          <span>{{option.odds | round}}</span>
-        </mat-chip-option>
-      </mat-chip-listbox>
-    </div>
+    <mat-chip-listbox #esportListbox>
+      <mat-chip-option class="options" *ngFor="let option of esportBet.options" (click)="emitEsportBetOption(option)">
+        <span>{{option.betName}}</span>
+        <span>{{option.odds | round}}</span>
+      </mat-chip-option>
+    </mat-chip-listbox>
   </mat-card-content>
 </mat-card>
