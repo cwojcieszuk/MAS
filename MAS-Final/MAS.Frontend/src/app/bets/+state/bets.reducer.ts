@@ -52,7 +52,7 @@ export const betsReducer = createReducer(
     coupon: ({
       ...state.coupon,
       esportBetOptions: state.coupon.esportBetOptions.filter(option => option.idBetEsportOption !== action.index),
-    })
+    }),
   })),
   on(BetsActions.addSportBetOption, (state, action) => ({
     ...state,
@@ -65,7 +65,7 @@ export const betsReducer = createReducer(
     coupon: ({
       ...state.coupon,
       sportBetOptions: state.coupon.sportBetOptions.filter(option => option.idBetSportOption !== action.index),
-    })
+    }),
   })),
   on(BetsActions.setCouponAmount, (state, action) => ({
     ...state,

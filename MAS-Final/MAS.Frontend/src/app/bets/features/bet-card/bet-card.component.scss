@@ -19,8 +19,7 @@
   }
 
   .options {
-    padding: .4rem;
-    padding-inline: 1rem;
+    padding: .2rem;
     background: #ffcc00;
     text-align: center;
 
@@ -32,10 +31,6 @@
         width: 100%;
         text-align: center;
       }
-    }
-
-    @include sm {
-      padding-inline: .1rem;
     }
 
     ::ng-deep.mdc-evolution-chip__cell {

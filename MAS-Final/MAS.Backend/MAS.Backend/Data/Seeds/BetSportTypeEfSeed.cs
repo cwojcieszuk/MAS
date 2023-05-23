@@ -17,7 +17,7 @@ public static class BetSportTypeEfSeed
             new()
             {
                 IdBetSportType = 2,
-                Name = "Wygra 1 drużyna"
+                Name = "Wygra 2 drużyna"
             },
             new()
             {

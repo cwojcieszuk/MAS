@@ -2,9 +2,15 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   canPlaceCoupon,
-  getCoupon, getCouponEsportOptions, getCouponOptions, getCouponSportOptions, getEsportBets,
-  getFullRate, getIsCouponLoading,
-  getPotentialWin, getShouldRefreshChips,
+  getCoupon,
+  getCouponEsportOptions,
+  getCouponOptions,
+  getCouponSportOptions,
+  getEsportBets,
+  getFullRate,
+  getIsCouponLoading,
+  getPotentialWin,
+  getShouldRefreshChips,
   getSportBets,
   shouldClearAmount
 } from './bets.selectors';
