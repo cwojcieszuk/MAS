@@ -1,4 +1,5 @@
-﻿using MAS.Backend.Persistence.Interfaces.Coupons;
+﻿using System.Net;
+using MAS.Backend.Persistence.Interfaces.Coupons;
 using MAS.Backend.Requests.Coupons;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +23,9 @@ public class CouponsController : ControllerBase
     {
         var validationResult = await _couponsService.ValidatePlaceCoupon(request);
 
-        if (validationResult == false)
+        if (!validationResult.IsValid)
         {
-            return BadRequest();
+            return ValidationProblem(detail: validationResult.Error, statusCode: 400);
         }
         
         await _couponsService.PlaceCoupon(request);

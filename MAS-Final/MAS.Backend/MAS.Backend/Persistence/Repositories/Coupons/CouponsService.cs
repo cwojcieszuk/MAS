@@ -2,6 +2,7 @@
 using MAS.Backend.Entities;
 using MAS.Backend.Persistence.Interfaces.Coupons;
 using MAS.Backend.Requests.Coupons;
+using MAS.Backend.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MAS.Backend.Persistence.Repositories.Coupons;
@@ -62,33 +63,38 @@ public class CouponsService : ICouponsService
         await _masContext.SaveChangesAsync();
     }
 
-    public async Task<bool> ValidatePlaceCoupon(PlaceCouponRequest request)
+    public async Task<ValidationError> ValidatePlaceCoupon(PlaceCouponRequest request)
     {
         var user = await _masContext.Users.FirstOrDefaultAsync(user => user.IdUser == request.IdUser);
 
         if (user == null)
         {
-            return false;
+            return new ValidationError("Użytkownik o takim id nie istnieje", false);
         }
         
         var account = await _masContext.Accounts.FirstOrDefaultAsync(acc => acc.IdAccount == user.IdUser);
 
+        if (account == null)
+        {
+            return new ValidationError("Konto o takim id nie istnieje", false);
+        }
+        
         if (account.Money < request.Amount)
         {
-            return false;
+            return new ValidationError("Użytkownik nie posiada takiej ilości na koncie", false);
         }
 
         if (request.Amount < 2)
         {
-            return false;
+            return new ValidationError("Stawka kuponu musi być wynosić co najmniej 2 zł", false);
         }
 
         if (request.BetEsportOptionIds.Length == 0 && request.BetSportOptionIds.Length == 0)
         {
-            return false;
+            return new ValidationError("Nie wybrano żadnych zakładów", false);
         }
 
-        return true;
+        return new ValidationError(true);
     }
 
     private float CountFullRateForCoupon(List<float> rates)

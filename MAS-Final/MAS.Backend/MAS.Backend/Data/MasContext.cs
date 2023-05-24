@@ -369,9 +369,5 @@ public partial class MasContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.RefreshTokenExpiration).HasColumnType("datetime");
         });
-
-        OnModelCreatingPartial(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
