@@ -15,11 +15,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { AccessTokenInterceptor } from './auth/interceptors/access-token.interceptor';
 import { ToastrModule } from 'ngx-toastr';
-import { MatNativeDateModule } from '@angular/material/core';
 import { RoundPipe } from './shared/pipes/round.pipe';
 import { MatIconModule } from '@angular/material/icon';
-import { AtomSpinnerModule } from 'angular-epic-spinners';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -45,13 +44,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     RoundPipe,
     MatIconModule,
     MatTooltipModule,
+    MatNativeDateModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AccessTokenInterceptor,
       multi: true,
-    }
+    },
+    { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
   ],
   bootstrap: [AppComponent]
 })

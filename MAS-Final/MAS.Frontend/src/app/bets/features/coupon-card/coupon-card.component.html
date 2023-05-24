@@ -31,6 +31,6 @@
       <mat-progress-spinner *ngIf="(facade.isCouponLoading$ | async)" [diameter]="35" mode="indeterminate"></mat-progress-spinner>
     </button>
     <span class="error" *ngIf="authError">Aby postawić kupon musisz być zalogowany</span>
-    <span class="error" *ngIf="money < amountFormControl.value">Za malo kasy na koncie</span>
+    <span class="error" *ngIf="(money < amountFormControl.value) && !authError">Za malo kasy na koncie</span>
   </mat-card-footer>
 </mat-card>

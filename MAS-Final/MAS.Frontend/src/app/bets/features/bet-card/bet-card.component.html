@@ -6,7 +6,7 @@
     {{sportBet.team1}} - {{sportBet.team2}}
 
     <mat-chip-listbox #sportListbox>
-      <mat-chip-option class="options" *ngFor="let option of sportBet.options" (click)="emitSportBetOption(option)">
+      <mat-chip-option [tabIndex]="option.idBetSportOption" class="options"  *ngFor="let option of sportBet.options" (click)="emitSportBetOption(option)">
         <span>{{option.betName}}</span>
         <span>{{option.odds | round}}</span>
       </mat-chip-option>
@@ -22,7 +22,7 @@
     {{esportBet.team1}} - {{esportBet.team2}}
 
     <mat-chip-listbox #esportListbox>
-      <mat-chip-option class="options" *ngFor="let option of esportBet.options" (click)="emitEsportBetOption(option)">
+      <mat-chip-option [tabIndex]="option.idBetEsportOption" class="options" *ngFor="let option of esportBet.options" (click)="emitEsportBetOption(option)">
         <span>{{option.betName}}</span>
         <span>{{option.odds | round}}</span>
       </mat-chip-option>

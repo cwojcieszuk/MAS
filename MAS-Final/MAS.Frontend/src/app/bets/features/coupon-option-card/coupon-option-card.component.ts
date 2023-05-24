@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SportBetWithOption } from '../../models/sport-bet.model';
 import { BetsFacade } from '../../+state/bets.facade';
 import { EsportBetWithOption } from '../../models/esport-bet.model';
+import { BetsService } from '../../bets.service';
 
 @Component({
   selector: 'app-coupon-option-card',
@@ -14,8 +15,10 @@ export class CouponOptionCardComponent implements OnInit {
   sportOption: SportBetWithOption | null = null;
   esportOption: EsportBetWithOption | null = null;
 
-  constructor(public facade: BetsFacade) {
-  }
+  constructor(
+    public facade: BetsFacade,
+    private betsService: BetsService
+  ) {}
 
   ngOnInit(): void {
     if('game' in this.couponOption) {
@@ -29,9 +32,11 @@ export class CouponOptionCardComponent implements OnInit {
 
   removeEsportOption(index: number): void {
     this.facade.removeEsportBetOption(index);
+    this.betsService.esportOptionToDelete$.next(index);
   }
 
   removeSportOption(index: number): void {
-    this.facade.removeSportBetOption(index)
+    this.facade.removeSportBetOption(index);
+    this.betsService.sportOptionToDelete$.next(index);
   }
 }

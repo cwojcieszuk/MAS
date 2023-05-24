@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   standalone: true,
@@ -20,6 +20,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
+  ],
   templateUrl: './register-dialog.component.html',
   styleUrls: ['./register-dialog.component.scss']
 })
@@ -32,7 +35,7 @@ export class RegisterDialogComponent {
     email: this.fb.control<string>('', Validators.required),
     password: this.fb.control<string>('', Validators.required),
     phoneNumber: this.fb.control<number | null>(null, Validators.required),
-    dateOfBirth: this.fb.control<Date>(new Date()),
+    dateOfBirth: this.fb.control<Date | null>(null, Validators.required),
     bankAccount: this.fb.control<string>('', Validators.required),
   });
 

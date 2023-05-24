@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { SportBetModel } from './models/sport-bet.model';
 import { PlaceCouponParams } from './models/place-coupon.params';
 import { EsportBetModel } from './models/esport-bet.model';
@@ -9,7 +9,9 @@ import { EsportBetModel } from './models/esport-bet.model';
   providedIn: 'root'
 })
 export class BetsService {
-  readonly url = 'https://localhost:5001/api';
+  private readonly url = 'https://localhost:5001/api';
+  sportOptionToDelete$ = new BehaviorSubject<number | null>(null);
+  esportOptionToDelete$ = new BehaviorSubject<number | null>(null);
 
   constructor(private http: HttpClient) { }
 

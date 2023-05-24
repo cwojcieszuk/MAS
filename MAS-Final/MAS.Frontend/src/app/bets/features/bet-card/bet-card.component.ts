@@ -5,6 +5,8 @@ import { BaseComponent } from '../../../shared/components/base.component';
 import { BetsFacade } from '../../+state/bets.facade';
 import { EsportBetModel, EsportBetOption, EsportBetWithOption } from '../../models/esport-bet.model';
 import { MatChipListbox } from '@angular/material/chips';
+import { BetsService } from '../../bets.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-bet-card',
@@ -27,7 +29,8 @@ export class BetCardComponent extends BaseComponent implements OnInit, AfterView
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private facade: BetsFacade
+    private facade: BetsFacade,
+    private betsService: BetsService,
   ) {
     super();
   }
@@ -83,6 +86,28 @@ export class BetCardComponent extends BaseComponent implements OnInit, AfterView
   }
 
   ngAfterViewInit(): void {
+    this.observe(this.betsService.sportOptionToDelete$)
+      .pipe(filter(Boolean))
+      .subscribe(value => {
+        this.sportListBox._chips.forEach(chip => {
+          if(chip.tabIndex === value) {
+            chip.deselect();
+            return;
+          }
+        })
+      });
+
+    this.observe(this.betsService.esportOptionToDelete$)
+      .pipe(filter(Boolean))
+      .subscribe(value => {
+        this.esportListBox._chips.forEach(chip => {
+          if(chip.tabIndex === value) {
+            chip.deselect();
+            return;
+          }
+        })
+      });
+
     this.observe(this.facade.shouldRefreshChips$)
       .subscribe(value => {
         if(value) {

@@ -1,11 +1,14 @@
 :host {
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: .5rem;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
 }
 
 .wrapper {

@@ -19,7 +19,6 @@ import { CouponOptionCardComponent } from './features/coupon-option-card/coupon-
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
 
 @NgModule({
   declarations: [
@@ -29,23 +28,22 @@ import { MatLegacyChipsModule } from '@angular/material/legacy-chips';
     CouponOptionCardComponent
   ],
     imports: [
-        CommonModule,
-        BetsRoutingModule,
-        HttpClientModule,
-        BetsStoreModule,
-        MatCardModule,
-        RoundPipe,
-        MatChipsModule,
-        MatButtonModule,
-        MatInputModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatButtonToggleModule,
-        MatIconModule,
-        MatTabsModule,
-        MatProgressBarModule,
-        MatProgressSpinnerModule,
-        MatLegacyChipsModule,
+      CommonModule,
+      BetsRoutingModule,
+      HttpClientModule,
+      BetsStoreModule,
+      MatCardModule,
+      RoundPipe,
+      MatChipsModule,
+      MatButtonModule,
+      MatInputModule,
+      MatFormFieldModule,
+      ReactiveFormsModule,
+      MatButtonToggleModule,
+      MatIconModule,
+      MatTabsModule,
+      MatProgressBarModule,
+      MatProgressSpinnerModule,
     ]
 })
 export class BetsModule { }

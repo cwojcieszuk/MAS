@@ -5,22 +5,24 @@
     <a routerLink="bets" routerLinkActive="active">Zakłady</a>
   </div>
 
-  <div class="wrapper" *ngIf="(authFacade.user$ | async) == null">
+  <div class="wrapper" style="gap: .5rem" *ngIf="(authFacade.user$ | async) == null">
     <button mat-raised-button (click)="login()">Zaloguj</button>
     <button mat-stroked-button (click)="register()" style="color: white">Zarejestruj</button>
   </div>
 
   <div class="wrapper account-details" *ngIf="(authFacade.user$ | async) != null">
     <div class="wrapper">
-      <span class="money">Stan konta: {{authFacade.accountMoney$ | async }}</span>
+      <span class="money">Stan konta: {{authFacade.accountMoney$ | async }} zł</span>
       <button mat-icon-button (click)="addMoney()">
         <mat-icon style="color: white">add</mat-icon>
       </button>
     </div>
-    <span>Hello {{(authFacade.user$ | async)?.email}}</span>
-    <button mat-icon-button [matTooltip]="'Wyloguj się'" (click)="authFacade.logout()">
-      <mat-icon style="color: white">logout</mat-icon>
-    </button>
+    <div class="wrapper">
+      <span class="hello-text">Hello {{(authFacade.user$ | async)?.email}}</span>
+      <button mat-icon-button [matTooltip]="'Wyloguj się'" (click)="authFacade.logout()">
+        <mat-icon style="color: white">logout</mat-icon>
+      </button>
+    </div>
   </div>
 </mat-toolbar>
 

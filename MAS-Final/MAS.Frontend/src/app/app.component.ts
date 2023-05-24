@@ -30,7 +30,6 @@ export class AppComponent extends BaseComponent implements OnInit {
   login(): void {
     const dialog = this.dialog.open(LoginDialogComponent, {
       minWidth: '500px',
-      minHeight: '200px',
     });
 
     this.observe(dialog.afterClosed())
@@ -40,7 +39,7 @@ export class AppComponent extends BaseComponent implements OnInit {
 
   register(): void {
     const dialog = this.dialog.open(RegisterDialogComponent, {
-      minWidth: '500px',
+      minWidth: '650px',
       minHeight: '200px',
     });
 
