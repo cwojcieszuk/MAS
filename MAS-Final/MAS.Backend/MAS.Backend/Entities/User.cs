@@ -12,12 +12,16 @@ public partial class User
     public string LastName { get; set; } = null!;
 
     public int Pesel { get; set; }
+    
+    public string Login { get; set; }
 
     public string Email { get; set; } = null!;
 
     public string Password { get; set; } = null!;
 
     public int PhoneNumber { get; set; }
+    
+    public int Age { get; set; }
 
     public DateTime DateOfBirth { get; set; }
 

@@ -36,7 +36,7 @@ export class RegisterDialogComponent {
     password: this.fb.control<string>('', Validators.required),
     phoneNumber: this.fb.control<number | null>(null, Validators.required),
     dateOfBirth: this.fb.control<Date | null>(null, Validators.required),
-    bankAccount: this.fb.control<string>('', Validators.required),
+    bankAccount: this.fb.control<string>(''),
   });
 
   get controls() {

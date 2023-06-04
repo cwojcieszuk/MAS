@@ -1,0 +1,15 @@
+@use 'src/mixins' as *;
+
+form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+
+button {
+  grid-column: 3;
+}

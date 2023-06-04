@@ -36,6 +36,8 @@ public class AuthenticationService : IAuthenticationService
             DateOfBirth = request.DateOfBirth,
             Pesel = request.Pesel
         };
+        
+        user.Age = DateTime.Now.Year - request.DateOfBirth.Year;
 
         user.Password = _passwordHasher.HashPassword(user, request.Password);
         user.RefreshToken = GenerateRefreshToken();
@@ -44,7 +46,12 @@ public class AuthenticationService : IAuthenticationService
         _masContext.Users.Add(user);
         await _masContext.SaveChangesAsync();
         
-        Account account = new Account { IdAccount = user.IdUser, BankAccount = request.BankAccount, Money = 0 };
+        Account account = new Account { IdAccount = user.IdUser, Money = 0 };
+        
+        if (request.BankAccount != null)
+        {
+            account.BankAccount = request.BankAccount;
+        }
 
         _masContext.Accounts.Add(account);
         await _masContext.SaveChangesAsync();

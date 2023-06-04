@@ -18,7 +18,7 @@
       </button>
     </div>
     <div class="wrapper">
-      <span class="hello-text">Hello {{(authFacade.user$ | async)?.email}}</span>
+      <span class="hello-text" routerLink="profile" routerLinkActive="active">Hello {{(authFacade.user$ | async)?.email}}</span>
       <button mat-icon-button [matTooltip]="'Wyloguj się'" (click)="authFacade.logout()">
         <mat-icon style="color: white">logout</mat-icon>
       </button>

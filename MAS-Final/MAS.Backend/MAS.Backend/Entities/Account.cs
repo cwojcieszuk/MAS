@@ -9,7 +9,9 @@ public partial class Account
 
     public double Money { get; set; }
 
-    public string BankAccount { get; set; } = null!;
+    public string? BankAccount { get; set; }
     
     public virtual User IdUserNavigation { get; set; } = null!;
+
+    public virtual ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
 }

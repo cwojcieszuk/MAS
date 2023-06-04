@@ -1,0 +1,33 @@
+<mat-card class="mat-elevation-z4 select-card">
+  <mat-card-content>
+    <button [class.active]="item.id === (facade.selectedMenuItem$ | async)" *ngFor="let item of menuItems" (click)="facade.selectMenuItem(item.id)">
+       <span>{{item.name}}</span>
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="info-card">
+  <mat-card-content>
+    <ng-container [ngSwitch]="facade.selectedMenuItem$ | async">
+      <div *ngSwitchCase="1">
+        <span class="card-title">{{menuItems[0].name}}</span>
+        <app-basic-info></app-basic-info>
+      </div>
+
+      <div *ngSwitchCase="2">
+        <span class="card-title">{{menuItems[1].name}}</span>
+        <app-address></app-address>
+      </div>
+
+      <div *ngSwitchCase="3">
+        <span class="card-title">{{menuItems[2].name}}</span>
+      </div>
+
+      <div *ngSwitchCase="4">
+        <span class="card-title">{{menuItems[3].name}}</span>
+      </div>
+    </ng-container>
+  </mat-card-content>
+</mat-card>
+
+<!--ng switch selectedItem -->

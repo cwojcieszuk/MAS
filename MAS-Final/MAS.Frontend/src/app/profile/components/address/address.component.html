@@ -1,0 +1,25 @@
+<form [formGroup]="formGroup">
+  <mat-form-field>
+    <mat-label>Miasto</mat-label>
+    <input matInput formControlName="city">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Województwo</mat-label>
+    <input matInput formControlName="state">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Ulica</mat-label>
+    <input matInput formControlName="street">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Kod pocztowy</mat-label>
+    <input matInput formControlName="postalCode">
+  </mat-form-field>
+
+  <button class="primary" mat-button (click)="save()">
+    <span>Zmień</span>
+  </button>
+</form>

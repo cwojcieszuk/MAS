@@ -344,6 +344,36 @@ public partial class MasContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("PlayerBet_User");
         });
+        
+        modelBuilder.Entity<Transaction>(entity =>
+        {
+            entity.HasKey(e => e.IdTransaction).HasName("Transaction_pk");
+
+            entity.ToTable("Transaction");
+
+            entity.HasOne(d => d.Account).WithMany(p => p.Transactions)
+                .HasForeignKey(d => d.IdAccount)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Transaction_Account");
+
+            entity.HasOne(d => d.TransactionType).WithMany(p => p.Transactions)
+                .HasForeignKey(d => d.IdTransactionType)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Transaction_TransactionType");
+        });
+
+        modelBuilder.Entity<TransactionType>(entity =>
+        {
+            entity.HasKey(e => e.IdTransactionType).HasName("TransactionType_pk");
+
+            entity.ToTable("TransactionType");
+
+            entity.Property(e => e.Type)
+                .HasMaxLength(64)
+                .IsUnicode(false);
+            
+            entity.Seed();
+        });
 
         modelBuilder.Entity<User>(entity =>
         {
@@ -352,6 +382,9 @@ public partial class MasContext : DbContext
             entity.ToTable("User");
 
             entity.Property(e => e.DateOfBirth).HasColumnType("date");
+            entity.Property(e => e.Login)
+                .HasMaxLength(64)
+                .IsUnicode(false);
             entity.Property(e => e.Email)
                 .HasMaxLength(64)
                 .IsUnicode(false);

@@ -8,4 +8,4 @@ public record RegisterRequest(
     string Password,
     int PhoneNumber,
     DateTime DateOfBirth,
-    string BankAccount);
+    string? BankAccount);

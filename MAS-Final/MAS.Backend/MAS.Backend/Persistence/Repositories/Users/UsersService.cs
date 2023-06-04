@@ -2,6 +2,7 @@
 using MAS.Backend.Entities;
 using MAS.Backend.Persistence.Interfaces.Authentication;
 using MAS.Backend.Persistence.Interfaces.Users;
+using MAS.Backend.Requests.Users;
 using MAS.Backend.Responses.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,6 +38,67 @@ public class UsersService : IUsersService
         }
         
         account.Money += amount;
+
+        await _masContext.SaveChangesAsync();
+    }
+
+    public async Task<BasicInfoResponse> GetBasicInfo(int idUser)
+    {
+        var user = await _masContext.Users.FirstOrDefaultAsync(u => u.IdUser == idUser);
+
+        BasicInfoResponse result = new BasicInfoResponse(user.FirstName, user.LastName, user.Login, user.Email, user.PhoneNumber, user.DateOfBirth);
+
+        return result;
+    }
+
+    public async Task UpdateBasicInfo(int idUser, UpdateBasicInfoRequest request)
+    {
+        var user = await _masContext.Users.FirstOrDefaultAsync(u => u.IdUser == idUser);
+
+        user.FirstName = request.Name;
+        user.LastName = request.Surname;
+        user.Email = request.Email;
+        user.Login = request.Login;
+        user.PhoneNumber = request.PhoneNumber;
+        user.DateOfBirth = request.DateOfBirth;
+
+        await _masContext.SaveChangesAsync();
+    }
+
+    public async Task<UserAddressResponse> GetAddress(int idUser)
+    {
+        var address = await _masContext.Addresses.FirstOrDefaultAsync(adres => adres.IdUser == idUser);
+
+        var result = new UserAddressResponse(address.City, address.State, address.Street, address.PostalCode);
+
+        return result;
+    }
+
+    public async Task UpdateAddress(int idUser, UpdateAddressRequest request)
+    {
+        var address = await _masContext.Addresses.FirstOrDefaultAsync(adres => adres.IdUser == idUser);
+
+        if (address is null)
+        {
+            Address newAddress = new Address()
+            {
+                City = request.City,
+                Street = request.Street,
+                PostalCode = request.PostalCode,
+                State = request.State,
+                IdUser = request.IdUser,
+            };
+
+            _masContext.Addresses.Add(newAddress);
+            await _masContext.SaveChangesAsync();
+            
+            return;
+        }
+
+        address.City = request.City;
+        address.State = request.State;
+        address.Street = request.Street;
+        address.PostalCode = request.PostalCode;
 
         await _masContext.SaveChangesAsync();
     }

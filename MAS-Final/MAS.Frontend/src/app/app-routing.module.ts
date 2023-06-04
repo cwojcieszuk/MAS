@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./bets/bets.module').then(m => m.BetsModule),
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+  },
+  {
     path: '',
     redirectTo: 'bets',
     pathMatch: 'full'

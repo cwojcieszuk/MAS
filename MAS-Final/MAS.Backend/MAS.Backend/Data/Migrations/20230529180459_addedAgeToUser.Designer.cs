@@ -4,6 +4,7 @@ using MAS.Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MAS.Backend.Data.Migrations
 {
     [DbContext(typeof(MasContext))]
-    partial class MasContextModelSnapshot : ModelSnapshot
+    [Migration("20230529180459_addedAgeToUser")]
+    partial class addedAgeToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,6 +31,7 @@ namespace MAS.Backend.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("BankAccount")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .IsUnicode(false)
                         .HasColumnType("varchar(256)");
@@ -786,68 +790,6 @@ namespace MAS.Backend.Data.Migrations
                     b.ToTable("PlayerBet", (string)null);
                 });
 
-            modelBuilder.Entity("MAS.Backend.Entities.Transaction", b =>
-                {
-                    b.Property<int>("IdTransaction")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTransaction"));
-
-                    b.Property<float>("Amount")
-                        .HasColumnType("real");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdAccount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdTransactionType")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdTransaction")
-                        .HasName("Transaction_pk");
-
-                    b.HasIndex("IdAccount");
-
-                    b.HasIndex("IdTransactionType");
-
-                    b.ToTable("Transaction", (string)null);
-                });
-
-            modelBuilder.Entity("MAS.Backend.Entities.TransactionType", b =>
-                {
-                    b.Property<int>("IdTransactionType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTransactionType"));
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(64)");
-
-                    b.HasKey("IdTransactionType")
-                        .HasName("TransactionType_pk");
-
-                    b.ToTable("TransactionType", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            IdTransactionType = 1,
-                            Type = "Wypłata"
-                        },
-                        new
-                        {
-                            IdTransactionType = 2,
-                            Type = "Wpłata"
-                        });
-                });
-
             modelBuilder.Entity("MAS.Backend.Entities.User", b =>
                 {
                     b.Property<int>("IdUser")
@@ -879,12 +821,6 @@ namespace MAS.Backend.Data.Migrations
                         .HasMaxLength(32)
                         .IsUnicode(false)
                         .HasColumnType("varchar(32)");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(64)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -1091,30 +1027,6 @@ namespace MAS.Backend.Data.Migrations
                     b.Navigation("IdUserNavigation");
                 });
 
-            modelBuilder.Entity("MAS.Backend.Entities.Transaction", b =>
-                {
-                    b.HasOne("MAS.Backend.Entities.Account", "Account")
-                        .WithMany("Transactions")
-                        .HasForeignKey("IdAccount")
-                        .IsRequired()
-                        .HasConstraintName("Transaction_Account");
-
-                    b.HasOne("MAS.Backend.Entities.TransactionType", "TransactionType")
-                        .WithMany("Transactions")
-                        .HasForeignKey("IdTransactionType")
-                        .IsRequired()
-                        .HasConstraintName("Transaction_TransactionType");
-
-                    b.Navigation("Account");
-
-                    b.Navigation("TransactionType");
-                });
-
-            modelBuilder.Entity("MAS.Backend.Entities.Account", b =>
-                {
-                    b.Navigation("Transactions");
-                });
-
             modelBuilder.Entity("MAS.Backend.Entities.BetEsport", b =>
                 {
                     b.Navigation("BetEsportOptions");
@@ -1168,11 +1080,6 @@ namespace MAS.Backend.Data.Migrations
             modelBuilder.Entity("MAS.Backend.Entities.Offer", b =>
                 {
                     b.Navigation("CouponOffers");
-                });
-
-            modelBuilder.Entity("MAS.Backend.Entities.TransactionType", b =>
-                {
-                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("MAS.Backend.Entities.User", b =>
